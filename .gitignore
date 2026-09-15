@@ -1,0 +1,37 @@
+# Keil build outputs
+Output/
+Listing/
+*.o
+*.d
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.crf
+*.iex
+*.htm
+*.build_log.htm
+*.dep
+*.sct
+*.lnp
+*.__i
+
+# Per-user Keil GUI/session state (not portable between machines/users)
+*.uvguix.*
+
+# Editor / OS temporary and backup files
+*.TMP
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Temporary Python/test products
+__pycache__/
+*.pyc
+.round1-test-*/
+.round2-test-*/
+.round2-gps-*/
+.round3-test-*/
+.round4-test-*/
