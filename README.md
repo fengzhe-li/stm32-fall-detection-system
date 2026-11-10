@@ -117,3 +117,9 @@ Full project dissertation: [`docs/U2180177 Li Fengzhe Final report.pdf`](docs/U2
 ## 👨‍💻 Author
 
 **Fengzhe Li** — Embedded Systems | STM32 | IoT
+
+## Reconstructed final-style PCB
+
+**Reconstructed Design Based on the Final Physical Prototype — Not Fabrication-Validated.** The editable design package is in [`hardware/reconstructed-final/Reconstructed_Final_Design/`](hardware/reconstructed-final/Reconstructed_Final_Design/), with [front](hardware/reconstructed-final/Reconstructed_Final_Design/pcb-front.png), [back](hardware/reconstructed-final/Reconstructed_Final_Design/pcb-back.png), and [isometric assembly preview](hardware/reconstructed-final/Reconstructed_Final_Design/pcb-3d.png).
+
+The preview follows the photographed grouping: central Blue Pill, GPS/OLED on the left, SIM800 and antenna at the upper right, sensor modules below, five buttons at lower right, and separate power controls. Board outline, module footprints, and connector locations are approximate. The reconstructed package uses recovered firmware, CAD, BOM, and dissertation as supporting evidence; it does not claim to be the same historical copper design. The genuine [prototype photo](docs/images/Photograph%20of%20the%20device.jpg) remains unchanged. See the [reconstruction report](hardware/reconstructed-final/Reconstructed_Final_Design/RECONSTRUCTION_REPORT.md) for resolved pin conflicts, assumptions, and verification limits.

@@ -1,0 +1,26 @@
+Reference,Component / module,Qty,Footprint / connector,Evidence / assumption
+J1,"Blue Pill socket, 2x20, 2.54 mm",1,Reconstruction:controller_40P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J2,Main 5 V DC input,1,Reconstruction:power_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J3,SIM800 external VBAT input (nominal 4 V),1,Reconstruction:power_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J4,DS18B20 3-pin module,1,Reconstruction:sensor_3P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J5,VK2828U7G5LF GPS UART module,1,Reconstruction:module_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J6,ADXL345 breakout,1,Reconstruction:sensor_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J7,MAX30102 breakout,1,Reconstruction:sensor_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J8,0.96 inch OLED I2C module,1,Reconstruction:module_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J9,SIM800C breakout power,1,Reconstruction:power_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+J10,SIM800 UART / status header,1,Reconstruction:module_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW1,Mode,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW2,Up,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW3,Down,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW4,Next,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW5,Help,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW6,GSM VBAT switch,1,Reconstruction:switch_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+SW7,Main power switch,1,Reconstruction:switch_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+R1,10k DS18B20 pull-up,1,Reconstruction:resistor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+Q1,S8050 low-side buzzer driver,1,Reconstruction:transistor_3P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+R2,1k base resistor,1,Reconstruction:resistor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+BZ1,5 V active buzzer,1,Reconstruction:buzzer_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+U1,AMS1117-3.3 regulator module,1,Reconstruction:regulator_3P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+C1,10 uF input capacitor,1,Reconstruction:capacitor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+C2,10 uF output capacitor,1,Reconstruction:capacitor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+C3,100 nF output bypass,1,Reconstruction:capacitor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report

@@ -1,0 +1,17 @@
+Function,Reconstructed net / MCU pin,Evidence,Confidence,Notes
+GPS TX → MCU RX,PB11 / USART3_RX,Firmware GPIO setup; dissertation pin note; PCB net label,High,Active GPS UART RX; PB11 buzzer helper is not called from main.c.
+GPS RX ← MCU TX,PB10 / USART3_TX,Firmware GPIO setup; PCB net label,High,Exact GPS breakout connector order remains unverified.
+GSM TX → MCU RX,PA10 / USART1_RX,Firmware GPIO setup,High,GSM UART RX at MCU.
+GSM RX ← MCU TX,PA9 / USART1_TX,Firmware GPIO setup,High,GSM UART TX from MCU.
+Buzzer driver input,PC13,main.c uses BEEP from key.h; KEY_Init configures PC13 output,High,S8050 plus 1k base resistor described in dissertation/BOM; transistor pin order unresolved.
+ADXL345 SCL,PA6,iic.c actual GPIO init; iic.h macros; main calls IIC_init; dissertation PA6/PA7,High,PD5/PD6 is only a stale comment in adxl345.c.
+ADXL345 SDA,PA7,iic.c actual GPIO init; iic.h macros; main calls IIC_init; dissertation PA6/PA7,High,Software I2C.
+MAX30102 SCL,PB1,myiic.c defines GPIO; main calls bsp_InitI2C for MAX30102,High,Breakout pull-ups/level translation unknown.
+MAX30102 SDA,PB0,myiic.c defines GPIO; main calls bsp_InitI2C for MAX30102,High,Breakout pull-ups/level translation unknown.
+OLED SCL,PB6,OLED_I2C.c GPIO defines; main calls OLED_Init,High,Connector order assumed from module/BOM.
+OLED SDA,PB7,OLED_I2C.c GPIO defines; main calls OLED_Init,High,Connector order assumed from module/BOM.
+DS18B20 DQ,PA11,ds18b20.c GPIO setup; dissertation confirms PA11,High,10k pull-up per dissertation; module may already include one.
+Buttons 1–5,"PB12, PB13, PB14, PB15, PA8",key.c input pull-ups; key.h read macros,High,Active-low switches to GND.
+SIM800 supply,Separate nominal 4 V input,Dissertation separate supply/switch; physical photo; SIM800 material,Medium,"Regulator capability, exact variant and burst current unresolved."
+Main logic supply,5 V input; controller board provides 3.3 V,Photo and dissertation,Medium,Jack polarity and Blue Pill regulator variant need confirmation.
+Blue Pill carrier header,40-pin socket,Photographed controller module,Medium,Pad-to-GPIO order is generic and not historically verified.

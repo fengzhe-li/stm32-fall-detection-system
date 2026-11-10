@@ -1,0 +1,341 @@
+{
+  "label": "Reconstructed Design Based on the Final Physical Prototype \u2014 Not Fabrication-Validated",
+  "nets": {
+    "GND": [
+      "J1.19",
+      "J1.20",
+      "J1.39",
+      "J2.2",
+      "J3.2",
+      "J4.2",
+      "J5.2",
+      "J6.2",
+      "J7.2",
+      "J8.2",
+      "J9.2",
+      "J10.2",
+      "SW1.2",
+      "SW2.2",
+      "SW3.2",
+      "SW4.2",
+      "SW5.2",
+      "Q1.1",
+      "U1.1",
+      "C1.2",
+      "C2.2",
+      "C3.2"
+    ],
+    "+5V": [
+      "SW7.1",
+      "BZ1.1",
+      "U1.3",
+      "C1.1"
+    ],
+    "+5V_INPUT": [
+      "J2.1",
+      "SW7.2"
+    ],
+    "SIM_VBAT": [
+      "SW6.1",
+      "J9.1"
+    ],
+    "SIM_VBAT_INPUT": [
+      "J3.1",
+      "SW6.2"
+    ],
+    "3V3": [
+      "J1.18",
+      "J1.40",
+      "J4.1",
+      "J5.1",
+      "J6.1",
+      "J7.1",
+      "J8.1",
+      "J10.1",
+      "R1.2",
+      "U1.2",
+      "C2.1",
+      "C3.1"
+    ],
+    "GPS_TX_TO_MCU_RX_PB11": [
+      "J1.16",
+      "J5.3"
+    ],
+    "GPS_RX_FROM_MCU_TX_PB10": [
+      "J1.15",
+      "J1.38",
+      "J5.4"
+    ],
+    "GSM_TX_TO_MCU_RX_PA10": [
+      "J1.27",
+      "J10.3"
+    ],
+    "GSM_RX_FROM_MCU_TX_PA9": [
+      "J1.26",
+      "J10.4"
+    ],
+    "ACCEL_SCL_PA6": [
+      "J1.11",
+      "J6.3"
+    ],
+    "ACCEL_SDA_PA7": [
+      "J1.12",
+      "J6.4"
+    ],
+    "MAX_SCL_PB1": [
+      "J1.14",
+      "J7.3"
+    ],
+    "MAX_SDA_PB0": [
+      "J1.13",
+      "J7.4"
+    ],
+    "OLED_SCL_PB6": [
+      "J1.34",
+      "J8.3"
+    ],
+    "OLED_SDA_PB7": [
+      "J1.35",
+      "J8.4"
+    ],
+    "TEMP_DQ_PA11": [
+      "J1.28",
+      "J4.3",
+      "R1.1"
+    ],
+    "BUZZER_PC13": [
+      "J1.2",
+      "R2.1"
+    ],
+    "BUZZER_LOW_SIDE": [
+      "Q1.2",
+      "BZ1.2"
+    ],
+    "BTN_MODE_PB12": [
+      "J1.21",
+      "SW1.1"
+    ],
+    "BTN_UP_PB13": [
+      "J1.22",
+      "SW2.1"
+    ],
+    "BTN_DOWN_PB14": [
+      "J1.23",
+      "SW3.1"
+    ],
+    "BTN_NEXT_PB15": [
+      "J1.24",
+      "SW4.1"
+    ],
+    "BTN_HELP_PA8": [
+      "J1.25",
+      "SW5.1"
+    ],
+    "BUZZER_BASE": [
+      "R2.2",
+      "Q1.3"
+    ]
+  },
+  "components": [
+    {
+      "ref": "J1",
+      "value": "Blue Pill socket, 2x20, 2.54 mm",
+      "x_mm": 55,
+      "y_mm": 39,
+      "category": "controller",
+      "pads": 40
+    },
+    {
+      "ref": "J2",
+      "value": "Main 5 V DC input",
+      "x_mm": 7,
+      "y_mm": 8,
+      "category": "power",
+      "pads": 2
+    },
+    {
+      "ref": "J3",
+      "value": "SIM800 external VBAT input (nominal 4 V)",
+      "x_mm": 97,
+      "y_mm": 8,
+      "category": "power",
+      "pads": 2
+    },
+    {
+      "ref": "J4",
+      "value": "DS18B20 3-pin module",
+      "x_mm": 14,
+      "y_mm": 36,
+      "category": "sensor",
+      "pads": 3
+    },
+    {
+      "ref": "J5",
+      "value": "VK2828U7G5LF GPS UART module",
+      "x_mm": 23,
+      "y_mm": 17,
+      "category": "module",
+      "pads": 4
+    },
+    {
+      "ref": "J6",
+      "value": "ADXL345 breakout",
+      "x_mm": 59,
+      "y_mm": 73.5,
+      "category": "sensor",
+      "pads": 4
+    },
+    {
+      "ref": "J7",
+      "value": "MAX30102 breakout",
+      "x_mm": 35,
+      "y_mm": 73.5,
+      "category": "sensor",
+      "pads": 4
+    },
+    {
+      "ref": "J8",
+      "value": "0.96 inch OLED I2C module",
+      "x_mm": 16,
+      "y_mm": 56,
+      "category": "module",
+      "pads": 4
+    },
+    {
+      "ref": "J9",
+      "value": "SIM800C breakout power",
+      "x_mm": 99,
+      "y_mm": 40,
+      "category": "power",
+      "pads": 2
+    },
+    {
+      "ref": "J10",
+      "value": "SIM800 UART / status header",
+      "x_mm": 85,
+      "y_mm": 25,
+      "category": "module",
+      "pads": 4
+    },
+    {
+      "ref": "SW1",
+      "value": "Mode",
+      "x_mm": 72,
+      "y_mm": 59,
+      "category": "button",
+      "pads": 2
+    },
+    {
+      "ref": "SW2",
+      "value": "Up",
+      "x_mm": 82,
+      "y_mm": 59,
+      "category": "button",
+      "pads": 2
+    },
+    {
+      "ref": "SW3",
+      "value": "Down",
+      "x_mm": 72,
+      "y_mm": 69,
+      "category": "button",
+      "pads": 2
+    },
+    {
+      "ref": "SW4",
+      "value": "Next",
+      "x_mm": 82,
+      "y_mm": 69,
+      "category": "button",
+      "pads": 2
+    },
+    {
+      "ref": "SW5",
+      "value": "Help",
+      "x_mm": 92,
+      "y_mm": 69,
+      "category": "button",
+      "pads": 2
+    },
+    {
+      "ref": "SW6",
+      "value": "GSM VBAT switch",
+      "x_mm": 98.5,
+      "y_mm": 49,
+      "category": "switch",
+      "pads": 2
+    },
+    {
+      "ref": "SW7",
+      "value": "Main power switch",
+      "x_mm": 8,
+      "y_mm": 19,
+      "category": "switch",
+      "pads": 2
+    },
+    {
+      "ref": "R1",
+      "value": "10k DS18B20 pull-up",
+      "x_mm": 30,
+      "y_mm": 36,
+      "category": "resistor",
+      "pads": 2
+    },
+    {
+      "ref": "Q1",
+      "value": "S8050 low-side buzzer driver",
+      "x_mm": 89,
+      "y_mm": 50,
+      "category": "transistor",
+      "pads": 3
+    },
+    {
+      "ref": "R2",
+      "value": "1k base resistor",
+      "x_mm": 90,
+      "y_mm": 45,
+      "category": "resistor",
+      "pads": 2
+    },
+    {
+      "ref": "BZ1",
+      "value": "5 V active buzzer",
+      "x_mm": 96,
+      "y_mm": 59,
+      "category": "buzzer",
+      "pads": 2
+    },
+    {
+      "ref": "U1",
+      "value": "AMS1117-3.3 regulator module",
+      "x_mm": 49,
+      "y_mm": 8,
+      "category": "regulator",
+      "pads": 3
+    },
+    {
+      "ref": "C1",
+      "value": "10 uF input capacitor",
+      "x_mm": 40.5,
+      "y_mm": 8,
+      "category": "capacitor",
+      "pads": 2
+    },
+    {
+      "ref": "C2",
+      "value": "10 uF output capacitor",
+      "x_mm": 57,
+      "y_mm": 8,
+      "category": "capacitor",
+      "pads": 2
+    },
+    {
+      "ref": "C3",
+      "value": "100 nF output bypass",
+      "x_mm": 64,
+      "y_mm": 8,
+      "category": "capacitor",
+      "pads": 2
+    }
+  ]
+}
