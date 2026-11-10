@@ -44,8 +44,8 @@ STM32 and reconstructed peripheral logic are 3.3 V. Each I2C bus has DNP 4.7k pu
 
 ## Verification
 
-The local static verifier confirms reference uniqueness, pad existence, one-net-per-pad assignment, required nets, schematic label count versus PCB pad membership, route completion for every non-ground net, GND zone presence, component bounds/overlaps, corrected Blue Pill pin 38 treatment and balanced KiCad S-expressions. The autorouter reports 0 failed connections.
+The local static verifier confirms reference uniqueness, pad existence, one-net-per-pad assignment, required nets, schematic label count versus PCB pad membership, route completion for every non-ground net, GND zone presence, component bounds/overlaps, corrected Blue Pill pin 38 treatment, balanced KiCad S-expressions and geometric track/track, track/pad, track/via, via/pad and via/via spacing against the 0.25 mm clearance rule. The autorouter reports 0 failed connections.
 
-Native KiCad ERC, DRC and 3D rendering are executed by the repository workflow in `.github/workflows/kicad-reconstruction.yml` using the official KiCad 9 full container. Their reports and native render are workflow artifacts. Until those results are copied into this directory and reviewed, they must not be described as passes.
+Native KiCad ERC, DRC and 3D rendering are configured in `.github/workflows/kicad-reconstruction.yml` using the official KiCad 9 full container. The workflow is intended to commit its reports and native renders to `native-kicad-output/` on the same branch. Those files are not present at this commit, so no native ERC/DRC pass is claimed.
 
 No physical assembly, fabrication, power-on or new hardware validation has been performed. Do not order boards until exact module pinouts and power requirements are confirmed and native ERC/DRC results have been reviewed.

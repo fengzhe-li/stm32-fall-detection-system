@@ -14,6 +14,7 @@ The verifier checks:
 * schematic label membership matches the explicit PCB/netlist connectivity;
 * all non-ground nets have routed copper and the autorouter reported no failed connection;
 * a B.Cu GND zone exists;
+* inter-net track, pad and via geometry meets the local 0.25 mm clearance calculation;
 * component bodies remain inside the 104 × 82 mm outline without estimated overlap;
 * KiCad S-expression delimiters are balanced.
 
@@ -21,6 +22,6 @@ Generated PCB statistics: 274 copper segments, 14 vias, 26 logical nets, 36 comp
 
 ## Native KiCad validation
 
-KiCad is not installed locally. `.github/workflows/kicad-reconstruction.yml` runs KiCad 9 ERC, DRC, schematic PDF export, front/back board plots and native 3D rendering in the official full container. The workflow preserves the raw reports even if violations exist. Native reports are authoritative over the local structural checker and must be reviewed before fabrication.
+KiCad is not installed locally. `.github/workflows/kicad-reconstruction.yml` is configured to run KiCad 9 ERC, DRC, schematic PDF export and native front/back 3D rendering in the official full container. It preserves raw reports even if violations exist. No native output is present at this commit, so native ERC/DRC and 3D export remain unverified. Native reports are authoritative over the local structural checker and must be reviewed before fabrication.
 
 This design has not been manufactured or electrically tested.
