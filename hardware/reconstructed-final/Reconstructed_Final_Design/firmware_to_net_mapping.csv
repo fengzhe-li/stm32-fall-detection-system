@@ -1,17 +1,13 @@
-Function,Reconstructed net / MCU pin,Evidence,Confidence,Notes
-GPS TX → MCU RX,PB11 / USART3_RX,Firmware GPIO setup; dissertation pin note; PCB net label,High,Active GPS UART RX; PB11 buzzer helper is not called from main.c.
-GPS RX ← MCU TX,PB10 / USART3_TX,Firmware GPIO setup; PCB net label,High,Exact GPS breakout connector order remains unverified.
-GSM TX → MCU RX,PA10 / USART1_RX,Firmware GPIO setup,High,GSM UART RX at MCU.
-GSM RX ← MCU TX,PA9 / USART1_TX,Firmware GPIO setup,High,GSM UART TX from MCU.
-Buzzer driver input,PC13,main.c uses BEEP from key.h; KEY_Init configures PC13 output,High,S8050 plus 1k base resistor described in dissertation/BOM; transistor pin order unresolved.
-ADXL345 SCL,PA6,iic.c actual GPIO init; iic.h macros; main calls IIC_init; dissertation PA6/PA7,High,PD5/PD6 is only a stale comment in adxl345.c.
-ADXL345 SDA,PA7,iic.c actual GPIO init; iic.h macros; main calls IIC_init; dissertation PA6/PA7,High,Software I2C.
-MAX30102 SCL,PB1,myiic.c defines GPIO; main calls bsp_InitI2C for MAX30102,High,Breakout pull-ups/level translation unknown.
-MAX30102 SDA,PB0,myiic.c defines GPIO; main calls bsp_InitI2C for MAX30102,High,Breakout pull-ups/level translation unknown.
-OLED SCL,PB6,OLED_I2C.c GPIO defines; main calls OLED_Init,High,Connector order assumed from module/BOM.
-OLED SDA,PB7,OLED_I2C.c GPIO defines; main calls OLED_Init,High,Connector order assumed from module/BOM.
-DS18B20 DQ,PA11,ds18b20.c GPIO setup; dissertation confirms PA11,High,10k pull-up per dissertation; module may already include one.
-Buttons 1–5,"PB12, PB13, PB14, PB15, PA8",key.c input pull-ups; key.h read macros,High,Active-low switches to GND.
-SIM800 supply,Separate nominal 4 V input,Dissertation separate supply/switch; physical photo; SIM800 material,Medium,"Regulator capability, exact variant and burst current unresolved."
-Main logic supply,5 V input; controller board provides 3.3 V,Photo and dissertation,Medium,Jack polarity and Blue Pill regulator variant need confirmation.
-Blue Pill carrier header,40-pin socket,Photographed controller module,Medium,Pad-to-GPIO order is generic and not historically verified.
+Function,MCU pin,Reconstructed net,Evidence,Classification,Notes
+GPS TX → MCU RX,PB11 / USART3_RX,GPS_TX_TO_MCU_RX_PB11,usart3.c configures PB11 as RX,Confirmed from active firmware,PB11 is not used for the active buzzer path.
+GPS RX ← MCU TX,PB10 / USART3_TX,GPS_RX_FROM_MCU_TX_PB10,usart3.c configures PB10 as TX,Confirmed from active firmware,Blue Pill header pin 15 only; erroneous baseline tie to header pin 38 removed.
+GSM TX → MCU RX,PA10 / USART1_RX,GSM_TX_TO_MCU_RX_PA10,usart1.c GPIO and USART setup,Confirmed from active firmware,SIM800 TX logic level is normally accepted by STM32 3.3 V input.
+GSM RX ← MCU TX,PA9 / USART1_TX,GSM_TX_FROM_MCU_PA9 → 10k/47k divider → GSM_RX_DIVIDED,usart1.c GPIO and USART setup,Firmware pin confirmed; divider is a new design decision,Divider targets about 2.72 V from 3.3 V for a bare 2.8 V SIM800 UART input.
+Buzzer driver,PC13,BUZZER_PC13,main.c uses BEEP from key.h; KEY_Init configures PC13,Confirmed from active startup path,PB11 BEEP_GPIO_Config in led.c is not called. S8050 lead order remains footprint-dependent.
+ADXL345 SCL / SDA,PA6 / PA7,ACCEL_SCL_PA6 / ACCEL_SDA_PA7,iic.c and iic.h; main calls IIC_init,Confirmed from active firmware,PD5/PD6 appears only in a stale comment. Optional pull-ups are DNP by default.
+MAX30102 SCL / SDA,PB1 / PB0,MAX_SCL_PB1 / MAX_SDA_PB0,myiic.c; main calls bsp_InitI2C,Confirmed from active firmware,Optional pull-ups are DNP by default because breakout pull-ups are unresolved.
+OLED SCL / SDA,PB6 / PB7,OLED_SCL_PB6 / OLED_SDA_PB7,OLED_I2C.c; main calls OLED_Init,Confirmed from active firmware,Optional pull-ups are DNP by default.
+DS18B20 DQ,PA11,TEMP_DQ_PA11,ds18b20.c; dissertation,Confirmed from active firmware,4.7k carrier pull-up is DNP if the fitted module already has one.
+Buttons,"PB12, PB13, PB14, PB15, PA8",BTN_MODE / BTN_UP / BTN_DOWN / BTN_NEXT / BTN_HELP,key.c and key.h,Confirmed from active firmware,Active-low switches to ground; MCU internal pull-ups are enabled.
+Blue Pill power,3V3 header pins 18 and 40,3V3,Carrier power architecture,New design decision,The 5 V header pin 38 is intentionally unconnected. Do not connect USB while the carrier drives 3.3 V.
+SIM800 power,Separate 4.0 V input,SIM_VBAT_INPUT / SIM_VBAT,Prototype photo and dissertation show separate modem supply,Visual evidence plus new power-integrity design,0.8 mm routing and 1000 uF low-ESR plus 100 nF local bypass; source must tolerate current bursts.

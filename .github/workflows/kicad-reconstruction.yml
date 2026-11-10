@@ -1,0 +1,82 @@
+name: KiCad reconstruction validation
+
+on:
+  push:
+    branches: [codex/reconstructed-final-pcb]
+    paths:
+      - "hardware/reconstructed-final/**"
+      - ".github/workflows/kicad-reconstruction.yml"
+  pull_request:
+    paths:
+      - "hardware/reconstructed-final/**"
+      - ".github/workflows/kicad-reconstruction.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container: kicad/kicad:9.0-full
+    env:
+      DESIGN_DIR: hardware/reconstructed-final/Reconstructed_Final_Design
+      PROJECT: FallDetection_Reconstructed
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run native KiCad checks and exports
+        id: native
+        shell: bash
+        run: |
+          set +e
+          mkdir -p "$DESIGN_DIR/native-kicad-output"
+          kicad-cli sch erc --format json --severity-all --exit-code-violations \
+            -o "$DESIGN_DIR/native-kicad-output/erc.json" \
+            "$DESIGN_DIR/$PROJECT.kicad_sch"
+          erc_status=$?
+          kicad-cli pcb drc --format json --severity-all --exit-code-violations \
+            -o "$DESIGN_DIR/native-kicad-output/drc.json" \
+            "$DESIGN_DIR/$PROJECT.kicad_pcb"
+          drc_status=$?
+          kicad-cli sch export pdf \
+            -o "$DESIGN_DIR/native-kicad-output/schematic.pdf" \
+            "$DESIGN_DIR/$PROJECT.kicad_sch"
+          schematic_status=$?
+          kicad-cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-front.png" \
+            --width 1600 --height 1200 --side top --quality high --use-board-stackup-colors \
+            "$DESIGN_DIR/$PROJECT.kicad_pcb"
+          render_front_status=$?
+          kicad-cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-back.png" \
+            --width 1600 --height 1200 --side bottom --quality high --use-board-stackup-colors \
+            "$DESIGN_DIR/$PROJECT.kicad_pcb"
+          render_back_status=$?
+          {
+            echo "erc=$erc_status"
+            echo "drc=$drc_status"
+            echo "schematic=$schematic_status"
+            echo "render_front=$render_front_status"
+            echo "render_back=$render_back_status"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload native KiCad reports and renders
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reconstructed-final-kicad-native-output
+          path: hardware/reconstructed-final/Reconstructed_Final_Design/native-kicad-output/
+          if-no-files-found: warn
+
+      - name: Report native validation status
+        if: always()
+        shell: bash
+        run: |
+          printf 'ERC=%s DRC=%s schematic=%s render-front=%s render-back=%s\n' \
+            '${{ steps.native.outputs.erc }}' '${{ steps.native.outputs.drc }}' \
+            '${{ steps.native.outputs.schematic }}' '${{ steps.native.outputs.render_front }}' \
+            '${{ steps.native.outputs.render_back }}'
+          test '${{ steps.native.outputs.erc }}' = 0
+          test '${{ steps.native.outputs.drc }}' = 0
+          test '${{ steps.native.outputs.schematic }}' = 0
+          test '${{ steps.native.outputs.render_front }}' = 0
+          test '${{ steps.native.outputs.render_back }}' = 0

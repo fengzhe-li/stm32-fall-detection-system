@@ -1,79 +1,131 @@
+#!/usr/bin/env python3
+"""Regenerate the reconstruction BOM, evidence mapping, and review report."""
 from pathlib import Path
 import csv
-from build_reconstruction import OUT, components
+from build_reconstruction import OUT, PROJECT, components, route_failures, tracks, vias
 
-with (OUT/'BOM_reconstructed.csv').open('w',newline='') as f:
- w=csv.writer(f); w.writerow(['Reference','Component / module','Qty','Footprint / connector','Evidence / assumption'])
- for ref,val,x,y,kind,count in components:
-  w.writerow([ref,val,1,f'Reconstruction:{kind}_{count}P','Visual / firmware / recovered BOM where applicable; see reconstruction report'])
 
-rows=[
- ('GPS TX → MCU RX','PB11 / USART3_RX','Firmware GPIO setup; dissertation pin note; PCB net label','High','Active GPS UART RX; PB11 buzzer helper is not called from main.c.'),
- ('GPS RX ← MCU TX','PB10 / USART3_TX','Firmware GPIO setup; PCB net label','High','Exact GPS breakout connector order remains unverified.'),
- ('GSM TX → MCU RX','PA10 / USART1_RX','Firmware GPIO setup','High','GSM UART RX at MCU.'),
- ('GSM RX ← MCU TX','PA9 / USART1_TX','Firmware GPIO setup','High','GSM UART TX from MCU.'),
- ('Buzzer driver input','PC13','main.c uses BEEP from key.h; KEY_Init configures PC13 output','High','S8050 plus 1k base resistor described in dissertation/BOM; transistor pin order unresolved.'),
- ('ADXL345 SCL','PA6','iic.c actual GPIO init; iic.h macros; main calls IIC_init; dissertation PA6/PA7','High','PD5/PD6 is only a stale comment in adxl345.c.'),
- ('ADXL345 SDA','PA7','iic.c actual GPIO init; iic.h macros; main calls IIC_init; dissertation PA6/PA7','High','Software I2C.'),
- ('MAX30102 SCL','PB1','myiic.c defines GPIO; main calls bsp_InitI2C for MAX30102','High','Breakout pull-ups/level translation unknown.'),
- ('MAX30102 SDA','PB0','myiic.c defines GPIO; main calls bsp_InitI2C for MAX30102','High','Breakout pull-ups/level translation unknown.'),
- ('OLED SCL','PB6','OLED_I2C.c GPIO defines; main calls OLED_Init','High','Connector order assumed from module/BOM.'),
- ('OLED SDA','PB7','OLED_I2C.c GPIO defines; main calls OLED_Init','High','Connector order assumed from module/BOM.'),
- ('DS18B20 DQ','PA11','ds18b20.c GPIO setup; dissertation confirms PA11','High','10k pull-up per dissertation; module may already include one.'),
- ('Buttons 1–5','PB12, PB13, PB14, PB15, PA8','key.c input pull-ups; key.h read macros','High','Active-low switches to GND.'),
- ('SIM800 supply','Separate nominal 4 V input','Dissertation separate supply/switch; physical photo; SIM800 material','Medium','Regulator capability, exact variant and burst current unresolved.'),
- ('Main logic supply','5 V input; controller board provides 3.3 V','Photo and dissertation','Medium','Jack polarity and Blue Pill regulator variant need confirmation.'),
- ('Blue Pill carrier header','40-pin socket','Photographed controller module','Medium','Pad-to-GPIO order is generic and not historically verified.'),
+with (OUT / "BOM_reconstructed.csv").open("w", newline="") as f:
+    w = csv.writer(f, lineterminator="\n")
+    w.writerow(["Reference", "Component / module", "Qty", "Footprint", "Population", "Evidence / assumption"])
+    for c in components:
+        w.writerow([c["ref"], c["value"], 1, f'Reconstruction:{c["kind"]}_{len(c["pin_names"])}P', "DNP" if c["dnp"] else "Populate", "See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review."])
+
+
+mapping_rows = [
+    ("GPS TX → MCU RX", "PB11 / USART3_RX", "GPS_TX_TO_MCU_RX_PB11", "usart3.c configures PB11 as RX", "Confirmed from active firmware", "PB11 is not used for the active buzzer path."),
+    ("GPS RX ← MCU TX", "PB10 / USART3_TX", "GPS_RX_FROM_MCU_TX_PB10", "usart3.c configures PB10 as TX", "Confirmed from active firmware", "Blue Pill header pin 15 only; erroneous baseline tie to header pin 38 removed."),
+    ("GSM TX → MCU RX", "PA10 / USART1_RX", "GSM_TX_TO_MCU_RX_PA10", "usart1.c GPIO and USART setup", "Confirmed from active firmware", "SIM800 TX logic level is normally accepted by STM32 3.3 V input."),
+    ("GSM RX ← MCU TX", "PA9 / USART1_TX", "GSM_TX_FROM_MCU_PA9 → 10k/47k divider → GSM_RX_DIVIDED", "usart1.c GPIO and USART setup", "Firmware pin confirmed; divider is a new design decision", "Divider targets about 2.72 V from 3.3 V for a bare 2.8 V SIM800 UART input."),
+    ("Buzzer driver", "PC13", "BUZZER_PC13", "main.c uses BEEP from key.h; KEY_Init configures PC13", "Confirmed from active startup path", "PB11 BEEP_GPIO_Config in led.c is not called. S8050 lead order remains footprint-dependent."),
+    ("ADXL345 SCL / SDA", "PA6 / PA7", "ACCEL_SCL_PA6 / ACCEL_SDA_PA7", "iic.c and iic.h; main calls IIC_init", "Confirmed from active firmware", "PD5/PD6 appears only in a stale comment. Optional pull-ups are DNP by default."),
+    ("MAX30102 SCL / SDA", "PB1 / PB0", "MAX_SCL_PB1 / MAX_SDA_PB0", "myiic.c; main calls bsp_InitI2C", "Confirmed from active firmware", "Optional pull-ups are DNP by default because breakout pull-ups are unresolved."),
+    ("OLED SCL / SDA", "PB6 / PB7", "OLED_SCL_PB6 / OLED_SDA_PB7", "OLED_I2C.c; main calls OLED_Init", "Confirmed from active firmware", "Optional pull-ups are DNP by default."),
+    ("DS18B20 DQ", "PA11", "TEMP_DQ_PA11", "ds18b20.c; dissertation", "Confirmed from active firmware", "4.7k carrier pull-up is DNP if the fitted module already has one."),
+    ("Buttons", "PB12, PB13, PB14, PB15, PA8", "BTN_MODE / BTN_UP / BTN_DOWN / BTN_NEXT / BTN_HELP", "key.c and key.h", "Confirmed from active firmware", "Active-low switches to ground; MCU internal pull-ups are enabled."),
+    ("Blue Pill power", "3V3 header pins 18 and 40", "3V3", "Carrier power architecture", "New design decision", "The 5 V header pin 38 is intentionally unconnected. Do not connect USB while the carrier drives 3.3 V."),
+    ("SIM800 power", "Separate 4.0 V input", "SIM_VBAT_INPUT / SIM_VBAT", "Prototype photo and dissertation show separate modem supply", "Visual evidence plus new power-integrity design", "0.8 mm routing and 1000 uF low-ESR plus 100 nF local bypass; source must tolerate current bursts."),
 ]
-with (OUT/'firmware_to_net_mapping.csv').open('w',newline='') as f:
- w=csv.writer(f); w.writerow(['Function','Reconstructed net / MCU pin','Evidence','Confidence','Notes']); w.writerows(rows)
+with (OUT / "firmware_to_net_mapping.csv").open("w", newline="") as f:
+    w = csv.writer(f, lineterminator="\n")
+    w.writerow(["Function", "MCU pin", "Reconstructed net", "Evidence", "Classification", "Notes"])
+    w.writerows(mapping_rows)
 
-report='''# Reconstructed Design Based on the Final Physical Prototype — Not Fabrication-Validated
 
-## Summary
+report = f'''# Reconstructed Design Based on the Final Physical Prototype — Not Fabrication-Validated
 
-This new carrier-board reconstruction follows the photographed final assembly. It does not claim to reproduce a recovered Altium revision or exact historical copper. It represents the STM32F103C8T6 controller, GPS/OLED, SIM800, ADXL345, MAX30102, DS18B20, power, buzzer and five user buttons as explicit nets. All recovered Altium, EasyEDA, BOM, dissertation, firmware, photos and video remain unchanged.
+## Scope and authority
 
-The photo shows a white carrier board; a Blue Pill style controller near centre; GPS/OLED at left; SIM800 with external antenna at upper-right; sensor breakouts at lower-left and lower-centre; five tactile buttons at lower-right; and separate main/modem power controls. The new 104 × 82 mm outline is an approximate layout choice, not a calibrated measurement.
+This is a new, editable carrier-board design based primarily on the photographed final physical prototype. Recovered Altium files, EasyEDA JSON, BOM archives, dissertation material and firmware are supporting evidence from potentially different development iterations. None is treated as an authoritative historical final revision, and no claim is made that the new routing or pin assignment is identical to the manufactured undergraduate board.
 
-## Conflicts resolved from active code
+All historical files, photographs, firmware, reports and videos remain unchanged.
 
-* **PB11 GPS versus buzzer:** `usart3.c` configures PB11 as USART3 RX and PB10 as TX. `main.c` includes `key.h`, not `led.h`; `key.h` maps `BEEP` to PC13, which `KEY_Init` configures as an output. `led.c` has a separate PB11 buzzer initializer, but `BEEP_GPIO_Config()` is not called from the application startup path. The reconstruction therefore uses PB11 for GPS RX and PC13 for the buzzer without changing firmware.
-* **ADXL345 PA6/PA7 versus PD5/PD6:** startup calls `IIC_init()`. `iic.c` enables GPIOA and configures pins 6/7; `iic.h` maps SCL/SDA to PA6/PA7; dissertation text independently states PA6/PA7. PD5/PD6 appears only in an inconsistent driver comment. The reconstruction uses PA6=SCL and PA7=SDA.
+## Deliverable status
+
+The project now contains a real KiCad schematic with {len(components)} component/module symbols, named electrical pins, short wire stubs, net labels, no-connect markers, power rails, references, values and footprint assignments. The PCB contains the same {len(components)} references and 26 named nets, {len(tracks)} routed copper segments, {len(vias)} vias, 0.30 mm signal tracks, 0.60 mm logic-power tracks, 0.80 mm SIM800 power tracks and a bottom-layer GND zone. The board outline is 104 × 82 mm.
+
+The module footprints are purpose-built carrier/socket representations. Their pin numbering and outline dimensions remain subject to confirmation against the exact physical breakout modules before fabrication.
+
+## Conflict resolution from active firmware
+
+* **PB11 GPS versus buzzer:** `usart3.c` configures PB11 as USART3 RX and PB10 as TX. `main.c` uses `BEEP` from `key.h`; `KEY_Init` configures PC13 as the buzzer output. The PB11 helper in `led.c` is not called by the application startup path. The reconstruction therefore uses PB11 for GPS RX and PC13 for the buzzer.
+* **ADXL345 PA6/PA7 versus PD5/PD6:** startup calls `IIC_init()`. `iic.c` configures PA6/PA7 and `iic.h` maps SCL/SDA to those pins. PD5/PD6 is present only in an inconsistent comment. The reconstruction uses PA6=SCL and PA7=SDA.
+* **Blue Pill header pin 38:** the baseline reconstruction incorrectly placed header pin 38 on the PB10 GPS net. The 2×20 Blue Pill mapping used by the recovered evidence assigns PB10 to pin 15 and the 5 V header to pin 38. The GPS net now uses pin 15 only; pin 38 is intentionally unconnected in this externally regulated 3.3 V design.
 
 ## Evidence classes
 
-**Visually confirmed:** carrier-board grouping, controller module, GPS/OLED left, SIM800/antenna top-right, sensor breakouts, five buttons, separate power controls. Exact connector pin order, board dimensions and copper are not visible.
+**Visually confirmed final-prototype features:** white carrier-board form, central Blue Pill module, GPS and OLED toward the left, SIM800 and external antenna area at upper-right, sensor modules across the lower region, five tactile buttons at lower-right, buzzer and separate main/modem power controls.
 
-**Cross-source electrical evidence:** GSM USART1 PA9/PA10; GPS USART3 PB10/PB11; ADXL345 I2C PA6/PA7; MAX30102 I2C PB1/PB0; OLED I2C PB6/PB7; DS18B20 PA11; buttons PB12–PB15/PA8; buzzer PC13 in the active source path. Details are in `firmware_to_net_mapping.csv`.
+**Electrical connections corroborated by active firmware and other evidence:** USART1 on PA9/PA10 for GSM; USART3 on PB10/PB11 for GPS; ADXL345 on PA6/PA7; MAX30102 on PB1/PB0; OLED on PB6/PB7; DS18B20 on PA11; buttons on PB12–PB15 and PA8; active buzzer control on PC13.
 
-**New design choices:** 104 × 82 mm outline; 2.54 mm connectors; separate 5 V logic input and nominal 4 V SIM800 input/switch; AMS1117-3.3 regulator with 10 μF input/output and 100 nF bypass capacitors; 10 kΩ DS18B20 pull-up; S8050 low-side buzzer stage with 1 kΩ base resistor. Blue Pill header pad mapping follows the recovered 20-pin header assignment; clone-board variants and S8050 lead assignment remain unverified.
+**Reasonable new design decisions:** 104 × 82 mm outline; externally regulated 3.3 V supplied to Blue Pill pins 18/40; separate switched SIM800 VBAT input; 1000 uF low-ESR and 100 nF modem decoupling; 10k/47k divider on STM32 TX into a bare SIM800 RX; low-side transistor buzzer stage with base pull-down; DNP 4.7k pull-up options on the three software-I2C buses and DS18B20 bus; two-layer routing with a bottom ground plane.
 
-## Electrical limitations
+**Unresolved details:** exact breakout revisions and connector order for GPS, SIM800, OLED, ADXL345 and MAX30102; SIM800 carrier onboard regulation/level shifting; input connector polarity; S8050 E/B/C ordering; exact buzzer polarity/type; exact board dimensions and mounting details; whether fitted sensor modules already contain pull-ups.
 
-SIM800 needs a low-impedance supply with burst-current capacity. The design represents a separate modem supply; exact voltage, current rating, capacitance/ESR, polarity and module pinout remain unresolved. Confirm the exact modem breakout before powering it. The 3.3 V rail is represented by an AMS1117-3.3 and bypass capacitors, but its thermal margin and module load have not been checked. Sensor/OLED module pull-ups and voltage translation are also unknown. Do not apply USB power to a Blue Pill simultaneously with externally driving its 3.3 V header. No RF antenna design is added because the prototype uses a commercial module and antenna.
+## Electrical review
 
-## CAD and verification status
+### SIM800
 
-The package has editable KiCad-format PCB and pin/net schedule sources, explicit `.net` and JSON connectivity, BOM and mapping CSVs, and SVG/PNG previews. The `.kicad_sch` is an editable textual pin/net schedule rather than a symbol-and-wire schematic. The PCB contains component placements and pad/net assignments, but **has no copper tracks or verified zones**. KiCad is not installed in this environment, so native ERC/DRC and KiCad 3D export could not be run. `verify_design.py` checks reference uniqueness, pad membership, required nets, estimated body bounds/overlaps and S-expression balance only; it is not an ERC/DRC substitute. The isometric render is an illustrative assembly preview, not a native 3D board render. This package is not suitable for fabrication.
+The modem uses a separate nominal 4.0 V input and switch. VBAT routing is 0.80 mm and local decoupling is placed beside the module power header. The source must maintain the module voltage during transmit bursts; exact allowable voltage and required bulk capacitance depend on the recovered SIM800 breakout revision. The 10k/47k divider is appropriate for a bare 2.8 V RX input, but must be bypassed or adjusted if the actual breakout already includes a 3.3/5 V UART interface. The module TX-to-STM32 path is direct.
 
-## Remaining uncertainties
+### Blue Pill and 3.3 V rail
 
-1. Exact Blue Pill pin order and board regulator/USB details.
-2. GPS, SIM800, OLED, MAX30102 and ADXL345 breakout pin order and onboard regulators/level shifters.
-3. SIM800 power variant, burst current and required local decoupling.
-4. S8050 manufacturer/lead order and buzzer type/polarity.
-5. Whether DS18B20 module already includes a pull-up; exact input jack polarity and board dimensions.
-6. Recovered Altium/BOM files may represent other iterations; none is treated as authoritative final.
+The carrier uses an AMS1117-3.3 stage with 10 uF input/output capacitors and 100 nF bypass. It powers both Blue Pill 3.3 V header pins and the 3.3 V modules. Blue Pill 5 V pin 38 is left unconnected. USB power must not be connected while the carrier drives the Blue Pill 3.3 V rail unless the exact board's power-path isolation has been verified. AMS1117 dropout, thermal margin and clone-board regulator details require confirmation for the intended input and load.
 
-No firmware was changed. No physical assembly, manufacturing, power-on or new hardware validation is claimed.
+### Pull-ups and voltage compatibility
+
+STM32 and reconstructed peripheral logic are 3.3 V. Each I2C bus has DNP 4.7k pull-up footprints because typical breakouts often include pull-ups; population must be decided after measuring the exact modules so the combined pull-up resistance is suitable. The DS18B20 pull-up follows the same rule. No 5 V logic is connected directly to STM32 GPIO in the reconstruction.
+
+## Verification
+
+The local static verifier confirms reference uniqueness, pad existence, one-net-per-pad assignment, required nets, schematic label count versus PCB pad membership, route completion for every non-ground net, GND zone presence, component bounds/overlaps, corrected Blue Pill pin 38 treatment and balanced KiCad S-expressions. The autorouter reports {len(route_failures)} failed connections.
+
+Native KiCad ERC, DRC and 3D rendering are executed by the repository workflow in `.github/workflows/kicad-reconstruction.yml` using the official KiCad 9 full container. Their reports and native render are workflow artifacts. Until those results are copied into this directory and reviewed, they must not be described as passes.
+
+No physical assembly, fabrication, power-on or new hardware validation has been performed. Do not order boards until exact module pinouts and power requirements are confirmed and native ERC/DRC results have been reviewed.
 '''
-(OUT/'RECONSTRUCTION_REPORT.md').write_text(report)
+(OUT / "RECONSTRUCTION_REPORT.md").write_text(report)
 
-readme='''## Reconstructed final-style PCB
+verification = f'''# Verification results
 
-**Reconstructed Design Based on the Final Physical Prototype — Not Fabrication-Validated.** The new editable CAD package and previews are in [`hardware/reconstructed-final/Reconstructed_Final_Design/`](hardware/reconstructed-final/Reconstructed_Final_Design/). The design follows the photographed assembly and uses recovered CAD, firmware, BOM and dissertation as supporting evidence; it is not claimed to be identical to the historical PCB. See the [reconstruction report](hardware/reconstructed-final/Reconstructed_Final_Design/RECONSTRUCTION_REPORT.md) for evidence, pin resolution and limits, and the [prototype photo](docs/images/Photograph%20of%20the%20device.jpg).
+## Local structural and connectivity verification
+
+Latest local result: **PASS**.
+
+The verifier checks:
+
+* unique references and valid pad membership;
+* no pad assigned to more than one logical net;
+* firmware-critical nets and the corrected PB10/PB11/PC13 mapping;
+* J1 pin 38 is not tied to PB10 or to the externally driven 3.3 V rail;
+* a real schematic structure containing symbols, pins, wires, labels and no-connect markers;
+* schematic label membership matches the explicit PCB/netlist connectivity;
+* all non-ground nets have routed copper and the autorouter reported no failed connection;
+* a B.Cu GND zone exists;
+* component bodies remain inside the 104 × 82 mm outline without estimated overlap;
+* KiCad S-expression delimiters are balanced.
+
+Generated PCB statistics: {len(tracks)} copper segments, {len(vias)} vias, 26 logical nets, {len(components)} components/modules.
+
+## Native KiCad validation
+
+KiCad is not installed locally. `.github/workflows/kicad-reconstruction.yml` runs KiCad 9 ERC, DRC, schematic PDF export, front/back board plots and native 3D rendering in the official full container. The workflow preserves the raw reports even if violations exist. Native reports are authoritative over the local structural checker and must be reviewed before fabrication.
+
+This design has not been manufactured or electrically tested.
 '''
-repo=Path(__file__).parents[2]/'README.md'
-s=repo.read_text()
-if '## Reconstructed final-style PCB' not in s: repo.write_text(s.rstrip()+'\n\n'+readme)
+(OUT / "verification_results.md").write_text(verification)
+
+repo = Path(__file__).parents[2] / "README.md"
+s = repo.read_text()
+old_start = s.find("## Reconstructed final-style PCB")
+section = '''## Reconstructed final-style PCB
+
+**Reconstructed Design Based on the Final Physical Prototype — Not Fabrication-Validated.** The editable KiCad project is in [`hardware/reconstructed-final/Reconstructed_Final_Design/`](hardware/reconstructed-final/Reconstructed_Final_Design/). It contains a symbol-and-wire schematic, routed two-layer PCB, explicit connectivity/BOM evidence and engineering front/back previews. Native KiCad ERC/DRC and 3D outputs are produced by the reconstruction validation workflow and remain subject to review.
+
+The layout follows the genuine [prototype photograph](docs/images/Photograph%20of%20the%20device.jpg): central Blue Pill, GPS/OLED at left, SIM800 at upper-right, sensors below and five buttons at lower-right. Recovered CAD files are supporting historical evidence and remain unchanged. See the [reconstruction report](hardware/reconstructed-final/Reconstructed_Final_Design/RECONSTRUCTION_REPORT.md), [firmware-to-net mapping](hardware/reconstructed-final/Reconstructed_Final_Design/firmware_to_net_mapping.csv) and [verification results](hardware/reconstructed-final/Reconstructed_Final_Design/verification_results.md).
+'''
+if old_start >= 0:
+    s = s[:old_start].rstrip() + "\n\n" + section
+else:
+    s = s.rstrip() + "\n\n" + section
+repo.write_text(s)

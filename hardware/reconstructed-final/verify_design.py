@@ -19,7 +19,10 @@ for n,pads in d['nets'].items():
         seen[p]=n
 for required in ['GND','+5V','3V3','SIM_VBAT','GPS_TX_TO_MCU_RX_PB11','ACCEL_SCL_PA6','ACCEL_SDA_PA7','MAX_SCL_PB1','MAX_SDA_PB0','OLED_SCL_PB6','OLED_SDA_PB7','TEMP_DQ_PA11','BUZZER_PC13']:
     if required not in d['nets']: errors.append('missing required net '+required)
-sizes={'controller':(25.4,53.3),'power':(10,8),'sensor':(18,14),'module':(22,18),'button':(6,6),'switch':(8,6),'resistor':(7,4),'transistor':(5,5),'buzzer':(12,12),'regulator':(10,8),'capacitor':(5,4)}
+if d.get('route_failures'): errors.append('autorouter failures: '+', '.join(d['route_failures']))
+if 'J1.38' in d['nets'].get('GPS_RX_FROM_MCU_TX_PB10',[]): errors.append('Blue Pill pin 38 incorrectly tied to PB10')
+if any('J1.38' in pads for pads in d['nets'].values()): errors.append('Blue Pill 5 V pin 38 must remain unconnected in this 3.3 V power architecture')
+sizes={'controller':(25.4,53.3),'power':(10,8),'sensor':(18,14),'temp_sensor':(12,8),'module':(22,16),'button':(7,7),'switch':(9,6),'resistor':(9,4),'resistor_smd':(2.4,1.4),'transistor':(6,5),'buzzer':(12,12),'regulator':(11,8),'capacitor':(5,5),'capacitor_large':(11,11)}
 boxes=[]
 for c in d['components']:
     w,h=sizes.get(c['category'],(8,6)); x,y=c['x_mm'],c['y_mm']
@@ -42,9 +45,17 @@ for f in ['FallDetection_Reconstructed.kicad_pcb','FallDetection_Reconstructed.k
             elif ch==')': depth-=1
             if depth<0: errors.append(f'{f}: closing parenthesis before opening'); break
     if depth!=0 or instr: errors.append(f'{f}: unbalanced S-expression syntax')
-if not any('segment (' in (root/'FallDetection_Reconstructed.kicad_pcb').read_text() for _ in [0]): warnings.append('PCB has no copper tracks; pad/net assignments are present but board remains unrouted.')
+pcb=(root/'FallDetection_Reconstructed.kicad_pcb').read_text()
+sch=(root/'FallDetection_Reconstructed.kicad_sch').read_text()
+if '(zone (net 1) (net_name "GND") (layer "B.Cu")' not in pcb: errors.append('missing B.Cu GND zone')
+if pcb.count('(segment ') < 25: errors.append('insufficient routed copper segments')
+for token in ['(lib_symbols','  (symbol','  (wire','  (label','  (no_connect']:
+    if token not in sch: errors.append('schematic lacks '+token.strip())
+for net,pads in d['nets'].items():
+    if sch.count(f'(label "{net}"') != len(pads): errors.append(f'{net}: schematic label count does not match pad membership')
+    if net != 'GND' and f'(net {list(d["nets"]).index(net)+1} "{net}")' not in pcb: errors.append(f'{net}: missing PCB net declaration')
 if errors:
     print('FAIL'); print('\n'.join(errors)); sys.exit(1)
-print('PASS: unique refs; every listed net pad exists; pads are assigned to at most one net; required signal nets present; KiCad file delimiters balanced.')
+print('PASS: schematic symbols/wires/labels, PCB pad nets, routed copper, GND zone, geometry, pin-38 correction, and KiCad delimiters passed local structural checks.')
 for w in warnings: print('WARN:',w)
 print(f"Components: {len(refs)}; connected pads: {len(seen)}; nets: {len(d['nets'])}.")

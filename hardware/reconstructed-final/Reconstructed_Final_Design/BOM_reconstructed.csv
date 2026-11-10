@@ -1,26 +1,37 @@
-Reference,Component / module,Qty,Footprint / connector,Evidence / assumption
-J1,"Blue Pill socket, 2x20, 2.54 mm",1,Reconstruction:controller_40P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J2,Main 5 V DC input,1,Reconstruction:power_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J3,SIM800 external VBAT input (nominal 4 V),1,Reconstruction:power_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J4,DS18B20 3-pin module,1,Reconstruction:sensor_3P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J5,VK2828U7G5LF GPS UART module,1,Reconstruction:module_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J6,ADXL345 breakout,1,Reconstruction:sensor_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J7,MAX30102 breakout,1,Reconstruction:sensor_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J8,0.96 inch OLED I2C module,1,Reconstruction:module_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J9,SIM800C breakout power,1,Reconstruction:power_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-J10,SIM800 UART / status header,1,Reconstruction:module_4P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW1,Mode,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW2,Up,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW3,Down,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW4,Next,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW5,Help,1,Reconstruction:button_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW6,GSM VBAT switch,1,Reconstruction:switch_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-SW7,Main power switch,1,Reconstruction:switch_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-R1,10k DS18B20 pull-up,1,Reconstruction:resistor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-Q1,S8050 low-side buzzer driver,1,Reconstruction:transistor_3P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-R2,1k base resistor,1,Reconstruction:resistor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-BZ1,5 V active buzzer,1,Reconstruction:buzzer_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-U1,AMS1117-3.3 regulator module,1,Reconstruction:regulator_3P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-C1,10 uF input capacitor,1,Reconstruction:capacitor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-C2,10 uF output capacitor,1,Reconstruction:capacitor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
-C3,100 nF output bypass,1,Reconstruction:capacitor_2P,Visual / firmware / recovered BOM where applicable; see reconstruction report
+Reference,Component / module,Qty,Footprint,Population,Evidence / assumption
+J1,STM32F103C8T6 Blue Pill socket,1,Reconstruction:controller_40P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J2,Main 5 V input,1,Reconstruction:power_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J3,SIM800 4.0 V input,1,Reconstruction:power_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J4,DS18B20 module,1,Reconstruction:temp_sensor_3P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J5,VK2828U7G5LF GPS module,1,Reconstruction:module_4P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J6,ADXL345 breakout,1,Reconstruction:sensor_4P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J7,MAX30102 breakout,1,Reconstruction:sensor_4P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J8,0.96 inch OLED I2C module,1,Reconstruction:module_4P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J9,SIM800 power header,1,Reconstruction:power_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+J10,SIM800 UART / PWRKEY header,1,Reconstruction:module_4P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW1,Mode button,1,Reconstruction:button_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW2,Up button,1,Reconstruction:button_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW3,Down button,1,Reconstruction:button_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW4,Next button,1,Reconstruction:button_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW5,Help button,1,Reconstruction:button_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW6,GSM VBAT switch,1,Reconstruction:switch_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+SW7,Main power switch,1,Reconstruction:switch_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R1,4.7k DS18B20 pull-up (DNP if module fitted),1,Reconstruction:resistor_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R2,1k buzzer base resistor,1,Reconstruction:resistor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R3,10k SIM800 RX divider upper,1,Reconstruction:resistor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R4,47k SIM800 RX divider lower,1,Reconstruction:resistor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R5,4.7k ADXL SCL pull-up (DNP),1,Reconstruction:resistor_smd_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R6,4.7k ADXL SDA pull-up (DNP),1,Reconstruction:resistor_smd_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R7,4.7k MAX SCL pull-up (DNP),1,Reconstruction:resistor_smd_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R8,4.7k MAX SDA pull-up (DNP),1,Reconstruction:resistor_smd_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R9,4.7k OLED SCL pull-up (DNP),1,Reconstruction:resistor_smd_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R10,4.7k OLED SDA pull-up (DNP),1,Reconstruction:resistor_smd_2P,DNP,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+R11,10k buzzer base pull-down,1,Reconstruction:resistor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+Q1,S8050 low-side buzzer driver,1,Reconstruction:transistor_3P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+BZ1,5 V active buzzer,1,Reconstruction:buzzer_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+U1,AMS1117-3.3 regulator module,1,Reconstruction:regulator_3P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+C1,10 uF regulator input,1,Reconstruction:capacitor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+C2,10 uF regulator output,1,Reconstruction:capacitor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+C3,100 nF regulator bypass,1,Reconstruction:capacitor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+C4,1000 uF low-ESR SIM800 bulk,1,Reconstruction:capacitor_large_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
+C5,100 nF SIM800 bypass,1,Reconstruction:capacitor_2P,Populate,See RECONSTRUCTION_REPORT.md; module dimensions and connector pin order require build review.
