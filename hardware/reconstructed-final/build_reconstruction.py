@@ -56,12 +56,12 @@ components = [
     comp("J8", "0.96 inch OLED I2C module", 16, 48, "module", ["VCC", "GND", "SCL", "SDA"], ["power_in", "power_in", "bidirectional", "bidirectional"]),
     comp("J9", "SIM800 power header", 99, 41, "power", ["VBAT", "GND"], ["power_in", "power_in"]),
     comp("J10", "SIM800 UART / PWRKEY header", 88, 21, "module", ["PWRKEY_NC", "GND", "TXD", "RXD"], ["input", "power_in", "output", "input"]),
-    comp("SW1", "Mode button", 71, 59, "button", ["SIG", "GND"]),
+    comp("SW1", "Mode button", 72, 59, "button", ["SIG", "GND"]),
     comp("SW2", "Up button", 81, 59, "button", ["SIG", "GND"]),
     comp("SW3", "Down button", 71, 70, "button", ["SIG", "GND"]),
     comp("SW4", "Next button", 81, 70, "button", ["SIG", "GND"]),
     comp("SW5", "Help button", 92, 70, "button", ["SIG", "GND"]),
-    comp("SW6", "GSM VBAT switch", 98, 49, "switch", ["OUT", "IN"], ["power_out", "passive"]),
+    comp("SW6", "GSM VBAT switch", 99, 49, "switch", ["OUT", "IN"], ["power_out", "passive"]),
     comp("SW7", "Main power switch", 8, 17, "switch", ["OUT", "IN"], ["power_out", "passive"]),
     comp("R1", "4.7k DS18B20 pull-up (DNP if module fitted)", 29, 31, "resistor", ["DQ", "3V3"], dnp=True),
     comp("R2", "1k buzzer base resistor", 78, 49, "resistor", ["PC13", "BASE"]),
@@ -154,15 +154,17 @@ def pcb_footprint(c):
 
 
 def autoroute():
-    # A 0.4 mm grid leaves enough channels between 2.54 mm header rows while
-    # retaining at least 0.25 mm copper clearance for 0.30 mm signal tracks.
-    step = 0.4; nx, ny = int(W/step)+1, int(H/step)+1
+    # A 0.5 mm grid plus one-cell track envelopes provides at least 0.25 mm
+    # copper clearance for 0.30 mm signal tracks.
+    step = 0.5; nx, ny = int(W/step)+1, int(H/step)+1
     pad_cells = []
     for c in components:
         for pin in range(1, len(c["pin_names"])+1):
             net = padnet.get(f'{c["ref"]}.{pin}')
             if net:
                 x, y = abs_pad(c["ref"], pin); layers = {0} if c["kind"] == "resistor_smd" else {0,1}
+                # 0.30 mm trace + 0.25 mm clearance around 1.8 mm THT and
+                # 1.1/1.2 mm SMD pads, rounded up to the 0.5 mm route grid.
                 pad_cells.append((round(x/step), round(y/step), net, layers, 2 if c["kind"] == "resistor_smd" else 3))
     occupied = [defaultdict(set), defaultdict(set)]; tracks, vias, failures = [], [], []
     def blocked_by_pad(x, y, layer, net):
@@ -199,8 +201,9 @@ def autoroute():
         path=[end]
         while path[-1] not in starts: path.append(prev[path[-1]])
         return list(reversed(path))
-    priority=["+5V_INPUT","+5V","SIM_VBAT_INPUT","SIM_VBAT","3V3"]
-    ordered=priority+[n for n in nets if n not in priority and n!="GND"]
+    power_nets=["+5V_INPUT","+5V","SIM_VBAT_INPUT","SIM_VBAT","3V3"]
+    dense_interfaces=["MAX_SDA_PB0","MAX_SCL_PB1","OLED_SDA_PB7","OLED_SCL_PB6","ACCEL_SDA_PA7","ACCEL_SCL_PA6"]
+    ordered=dense_interfaces+[n for n in nets if n not in power_nets+dense_interfaces and n!="GND"]+power_nets
     for net in ordered:
         terminals=[]
         for token in nets[net]:
@@ -211,7 +214,7 @@ def autoroute():
         # The explicit net order lists the MCU and module first, followed by
         # optional pull-up branches. Preserve that primary route before adding
         # DNP branches so an unpopulated option cannot obstruct the interface.
-        primary_pending = bool(terminals) and net not in priority and len(terminals) > 1
+        primary_pending = bool(terminals) and net not in power_nets and len(terminals) > 1
         while terminals:
             if primary_pending:
                 a, b = connected[0], terminals[0]
@@ -246,6 +249,15 @@ def autoroute():
                 for ox in range(-radius,radius+1):
                     for oy in range(-radius,radius+1):
                         if ox*ox+oy*oy<=radius*radius: occupied[layer][(x+ox,y+oy)].add(net)
+            for via_net, (via_x, via_y) in vias:
+                if via_net != net:
+                    continue
+                vx, vy = round(via_x/step), round(via_y/step)
+                for layer in (0, 1):
+                    for ox in range(-2, 3):
+                        for oy in range(-2, 3):
+                            if ox*ox+oy*oy <= 4:
+                                occupied[layer][(vx+ox,vy+oy)].add(net)
             connected.append(b); terminals.remove(b)
     return tracks,vias,failures
 
@@ -309,7 +321,15 @@ for net,idx in net_index.items():
     for token in nets[net]: ref,pin=token.split('.'); netxml.append(f'  (node (ref "{ref}") (pin "{pin}"))')
     netxml.append(' )')
 netxml.append('))'); (OUT/f'{PROJECT}.net').write_text('\n'.join(netxml)+'\n')
-(OUT/'connectivity.json').write_text(json.dumps({"label":LABEL,"board_mm":[W,H],"nets":nets,"route_failures":route_failures,"tracks":len(tracks),"vias":len(vias),"components":[{"ref":c['ref'],"value":c['value'],"x_mm":c['x'],"y_mm":c['y'],"category":c['kind'],"pads":len(c['pin_names']),"pin_names":c['pin_names'],"dnp":c['dnp']} for c in components]},indent=2)+'\n')
+pad_geometry=[]
+for c in components:
+    smd=c['kind']=='resistor_smd'
+    radius=0.6 if smd else (1.05 if c['kind'] in {'power','switch','buzzer','capacitor_large'} else 0.9)
+    for pin in range(1,len(c['pin_names'])+1):
+        x,y=abs_pad(c['ref'],pin); token=f'{c["ref"]}.{pin}'
+        pad_geometry.append({'pad':token,'x':x,'y':y,'net':padnet.get(token),'layers':[0] if smd else [0,1],'radius':radius})
+copper={'tracks':[{'net':net,'a':a,'b':b,'layer':layer,'width':width} for net,a,b,layer,width in tracks],'vias':[{'net':net,'x':p[0],'y':p[1],'diameter':1.0,'drill':0.5} for net,p in vias],'pads':pad_geometry}
+(OUT/'connectivity.json').write_text(json.dumps({"label":LABEL,"board_mm":[W,H],"nets":nets,"route_failures":route_failures,"tracks":len(tracks),"vias":len(vias),"components":[{"ref":c['ref'],"value":c['value'],"x_mm":c['x'],"y_mm":c['y'],"category":c['kind'],"pads":len(c['pin_names']),"pin_names":c['pin_names'],"dnp":c['dnp']} for c in components],"copper":copper},indent=2)+'\n')
 
 COL={"power":"#e6a23c","controller":"#2563a6","sensor":"#39a578","module":"#647a9d","button":"#c2c9d1","switch":"#9477b8","resistor":"#d7b967","resistor_smd":"#d7b967","transistor":"#90b4c6","buzzer":"#b96c5e","regulator":"#5670a8","capacitor":"#556b73","capacitor_large":"#556b73"}
 def xml_escape(s): return s.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')

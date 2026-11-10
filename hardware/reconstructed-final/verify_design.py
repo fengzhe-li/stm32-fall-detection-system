@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static connectivity and geometry checks for the generated reconstruction."""
 from pathlib import Path
-import json, re, sys
+import json, math, re, sys
 root=Path(__file__).parent/'Reconstructed_Final_Design'
 d=json.loads((root/'connectivity.json').read_text())
 errors=[]; warnings=[]
@@ -32,6 +32,44 @@ for i,a in enumerate(boxes):
     for b in boxes[i+1:]:
         if min(a[3],b[3])-max(a[1],b[1])>0.3 and min(a[4],b[4])-max(a[2],b[2])>0.3:
             warnings.append(f'approximate body overlap: {a[0]} with {b[0]}')
+
+def point_segment_distance(p,a,b):
+    vx,vy=b[0]-a[0],b[1]-a[1]
+    if vx==0 and vy==0: return math.dist(p,a)
+    t=max(0,min(1,((p[0]-a[0])*vx+(p[1]-a[1])*vy)/(vx*vx+vy*vy)))
+    return math.dist(p,(a[0]+t*vx,a[1]+t*vy))
+
+def segments_distance(a,b,c,e):
+    def orient(p,q,r): return (q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0])
+    def on_segment(p,q,r): return min(p[0],r[0])-1e-9<=q[0]<=max(p[0],r[0])+1e-9 and min(p[1],r[1])-1e-9<=q[1]<=max(p[1],r[1])+1e-9
+    o1,o2,o3,o4=orient(a,b,c),orient(a,b,e),orient(c,e,a),orient(c,e,b)
+    if (o1>0)!=(o2>0) and (o3>0)!=(o4>0): return 0.0
+    if abs(o1)<1e-9 and on_segment(a,c,b): return 0.0
+    if abs(o2)<1e-9 and on_segment(a,e,b): return 0.0
+    if abs(o3)<1e-9 and on_segment(c,a,e): return 0.0
+    if abs(o4)<1e-9 and on_segment(c,b,e): return 0.0
+    return min(point_segment_distance(a,c,e),point_segment_distance(b,c,e),point_segment_distance(c,a,b),point_segment_distance(e,a,b))
+
+clearance=0.25; copper=d.get('copper',{}); tracks=copper.get('tracks',[]); vias=copper.get('vias',[]); pads=copper.get('pads',[])
+for i,t in enumerate(tracks):
+    a,b=tuple(t['a']),tuple(t['b'])
+    for u in tracks[i+1:]:
+        if t['net']==u['net'] or t['layer']!=u['layer']: continue
+        required=t['width']/2+u['width']/2+clearance
+        if segments_distance(a,b,tuple(u['a']),tuple(u['b']))+1e-6<required: errors.append(f"track clearance: {t['net']} vs {u['net']} on layer {t['layer']}")
+    for v in vias:
+        if t['net']==v['net']: continue
+        required=t['width']/2+v['diameter']/2+clearance
+        if point_segment_distance((v['x'],v['y']),a,b)+1e-6<required: errors.append(f"track/via clearance: {t['net']} vs {v['net']}")
+    for p in pads:
+        if not p['net'] or t['net']==p['net'] or t['layer'] not in p['layers']: continue
+        required=t['width']/2+p['radius']+clearance
+        if point_segment_distance((p['x'],p['y']),a,b)+1e-6<required: errors.append(f"track/pad clearance: {t['net']} vs {p['pad']}")
+for i,v in enumerate(vias):
+    for u in vias[i+1:]:
+        if v['net']!=u['net'] and math.dist((v['x'],v['y']),(u['x'],u['y']))+1e-6 < v['diameter']/2+u['diameter']/2+clearance: errors.append(f"via clearance: {v['net']} vs {u['net']}")
+    for p in pads:
+        if p['net'] and v['net']!=p['net'] and math.dist((v['x'],v['y']),(p['x'],p['y']))+1e-6 < v['diameter']/2+p['radius']+clearance: errors.append(f"via/pad clearance: {v['net']} vs {p['pad']}")
 for f in ['FallDetection_Reconstructed.kicad_pcb','FallDetection_Reconstructed.kicad_sch']:
     s=(root/f).read_text(); depth=0; instr=False; esc=False
     for ch in s:

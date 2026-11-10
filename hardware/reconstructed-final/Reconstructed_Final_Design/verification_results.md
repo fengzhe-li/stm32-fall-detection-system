@@ -17,7 +17,7 @@ The verifier checks:
 * component bodies remain inside the 104 × 82 mm outline without estimated overlap;
 * KiCad S-expression delimiters are balanced.
 
-Generated PCB statistics: 282 copper segments, 31 vias, 26 logical nets, 36 components/modules.
+Generated PCB statistics: 274 copper segments, 14 vias, 26 logical nets, 36 components/modules.
 
 ## Native KiCad validation
 

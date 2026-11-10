@@ -8,7 +8,7 @@ All historical files, photographs, firmware, reports and videos remain unchanged
 
 ## Deliverable status
 
-The project now contains a real KiCad schematic with 36 component/module symbols, named electrical pins, short wire stubs, net labels, no-connect markers, power rails, references, values and footprint assignments. The PCB contains the same 36 references and 26 named nets, 282 routed copper segments, 31 vias, 0.30 mm signal tracks, 0.60 mm logic-power tracks, 0.80 mm SIM800 power tracks and a bottom-layer GND zone. The board outline is 104 × 82 mm.
+The project now contains a real KiCad schematic with 36 component/module symbols, named electrical pins, short wire stubs, net labels, no-connect markers, power rails, references, values and footprint assignments. The PCB contains the same 36 references and 26 named nets, 274 routed copper segments, 14 vias, 0.30 mm signal tracks, 0.60 mm logic-power tracks, 0.80 mm SIM800 power tracks and a bottom-layer GND zone. The board outline is 104 × 82 mm.
 
 The module footprints are purpose-built carrier/socket representations. Their pin numbering and outline dimensions remain subject to confirmation against the exact physical breakout modules before fabrication.
 
