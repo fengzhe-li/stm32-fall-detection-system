@@ -29,6 +29,7 @@ jobs:
         shell: bash
         run: |
           set +e
+          rm -rf "$DESIGN_DIR/native-kicad-output"
           mkdir -p "$DESIGN_DIR/native-kicad-output"
 
           kicad_cli() {
@@ -41,28 +42,70 @@ jobs:
               kicad/kicad:9.0-full "$@"
           }
 
+          kicad_python() {
+            docker run --rm \
+              --user "$(id -u):$(id -g)" \
+              --env HOME=/tmp \
+              --volume "$GITHUB_WORKSPACE:/workspace" \
+              --workdir /workspace \
+              --entrypoint python3 \
+              kicad/kicad:9.0-full "$@"
+          }
+
           kicad_cli sch erc --format json --severity-all --exit-code-violations \
             -o "$DESIGN_DIR/native-kicad-output/erc.json" \
             "$DESIGN_DIR/$PROJECT.kicad_sch"
           erc_status=$?
-          kicad_cli pcb drc --refill --format json --severity-all --exit-code-violations \
-            -o "$DESIGN_DIR/native-kicad-output/drc.json" \
-            "$DESIGN_DIR/$PROJECT.kicad_pcb"
-          drc_status=$?
+
+          validation_board="$DESIGN_DIR/native-kicad-output/$PROJECT.validation.kicad_pcb"
+          kicad_python hardware/reconstructed-final/fill_zones.py \
+            "$DESIGN_DIR/$PROJECT.kicad_pcb" "$validation_board"
+          fill_status=$?
+          if [ "$fill_status" -eq 0 ]; then
+            kicad_cli pcb drc --format json --severity-all --exit-code-violations \
+              -o "$DESIGN_DIR/native-kicad-output/drc.json" \
+              "$validation_board"
+            drc_status=$?
+          else
+            drc_status=$fill_status
+          fi
           kicad_cli sch export pdf \
             -o "$DESIGN_DIR/native-kicad-output/schematic.pdf" \
             "$DESIGN_DIR/$PROJECT.kicad_sch"
           schematic_status=$?
           kicad_cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-front.png" \
-            --width 1600 --height 1200 --side top --quality high --use-board-stackup-colors \
+            --width 1600 --height 1200 --side top --quality high \
             "$DESIGN_DIR/$PROJECT.kicad_pcb"
           render_front_status=$?
           kicad_cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-back.png" \
-            --width 1600 --height 1200 --side bottom --quality high --use-board-stackup-colors \
+            --width 1600 --height 1200 --side bottom --quality high \
             "$DESIGN_DIR/$PROJECT.kicad_pcb"
           render_back_status=$?
+          generated_at="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          jq -n \
+            --arg source_commit "$GITHUB_SHA" \
+            --arg generated_at "$generated_at" \
+            --arg workflow_run_id "$GITHUB_RUN_ID" \
+            --arg erc_report_date "$(jq -r '.date // ""' "$DESIGN_DIR/native-kicad-output/erc.json" 2>/dev/null)" \
+            --arg drc_report_date "$(jq -r '.date // ""' "$DESIGN_DIR/native-kicad-output/drc.json" 2>/dev/null)" \
+            --argjson erc_status "$erc_status" \
+            --argjson fill_status "$fill_status" \
+            --argjson drc_status "$drc_status" \
+            --argjson schematic_status "$schematic_status" \
+            --argjson render_front_status "$render_front_status" \
+            --argjson render_back_status "$render_back_status" \
+            '{source_commit:$source_commit, generated_at:$generated_at,
+              workflow_run_id:$workflow_run_id,
+              reports:{erc:{date:$erc_report_date,status:$erc_status},
+                       drc:{date:$drc_report_date,status:$drc_status}},
+              zone_fill_status:$fill_status,
+              exports:{schematic:$schematic_status,
+                       render_front:$render_front_status,
+                       render_back:$render_back_status}}' \
+            > "$DESIGN_DIR/native-kicad-output/validation-metadata.json"
           {
             echo "erc=$erc_status"
+            echo "fill=$fill_status"
             echo "drc=$drc_status"
             echo "schematic=$schematic_status"
             echo "render_front=$render_front_status"
@@ -94,11 +137,13 @@ jobs:
         if: always()
         shell: bash
         run: |
-          printf 'ERC=%s DRC=%s schematic=%s render-front=%s render-back=%s\n' \
-            '${{ steps.native.outputs.erc }}' '${{ steps.native.outputs.drc }}' \
+          printf 'ERC=%s zone-fill=%s DRC=%s schematic=%s render-front=%s render-back=%s\n' \
+            '${{ steps.native.outputs.erc }}' '${{ steps.native.outputs.fill }}' \
+            '${{ steps.native.outputs.drc }}' \
             '${{ steps.native.outputs.schematic }}' '${{ steps.native.outputs.render_front }}' \
             '${{ steps.native.outputs.render_back }}'
           test '${{ steps.native.outputs.erc }}' = 0
+          test '${{ steps.native.outputs.fill }}' = 0
           test '${{ steps.native.outputs.drc }}' = 0
           test '${{ steps.native.outputs.schematic }}' = 0
           test '${{ steps.native.outputs.render_front }}' = 0
