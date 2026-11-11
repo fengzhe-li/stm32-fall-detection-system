@@ -18,7 +18,6 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    container: kicad/kicad:9.0-full
     env:
       DESIGN_DIR: hardware/reconstructed-final/Reconstructed_Final_Design
       PROJECT: FallDetection_Reconstructed
@@ -31,23 +30,34 @@ jobs:
         run: |
           set +e
           mkdir -p "$DESIGN_DIR/native-kicad-output"
-          kicad-cli sch erc --format json --severity-all --exit-code-violations \
+
+          kicad_cli() {
+            docker run --rm \
+              --user "$(id -u):$(id -g)" \
+              --env HOME=/tmp \
+              --volume "$GITHUB_WORKSPACE:/workspace" \
+              --workdir /workspace \
+              --entrypoint kicad-cli \
+              kicad/kicad:9.0-full "$@"
+          }
+
+          kicad_cli sch erc --format json --severity-all --exit-code-violations \
             -o "$DESIGN_DIR/native-kicad-output/erc.json" \
             "$DESIGN_DIR/$PROJECT.kicad_sch"
           erc_status=$?
-          kicad-cli pcb drc --format json --severity-all --exit-code-violations \
+          kicad_cli pcb drc --format json --severity-all --exit-code-violations \
             -o "$DESIGN_DIR/native-kicad-output/drc.json" \
             "$DESIGN_DIR/$PROJECT.kicad_pcb"
           drc_status=$?
-          kicad-cli sch export pdf \
+          kicad_cli sch export pdf \
             -o "$DESIGN_DIR/native-kicad-output/schematic.pdf" \
             "$DESIGN_DIR/$PROJECT.kicad_sch"
           schematic_status=$?
-          kicad-cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-front.png" \
+          kicad_cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-front.png" \
             --width 1600 --height 1200 --side top --quality high --use-board-stackup-colors \
             "$DESIGN_DIR/$PROJECT.kicad_pcb"
           render_front_status=$?
-          kicad-cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-back.png" \
+          kicad_cli pcb render --output "$DESIGN_DIR/native-kicad-output/pcb-3d-native-back.png" \
             --width 1600 --height 1200 --side bottom --quality high --use-board-stackup-colors \
             "$DESIGN_DIR/$PROJECT.kicad_pcb"
           render_back_status=$?
