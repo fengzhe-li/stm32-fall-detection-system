@@ -82,6 +82,12 @@ Indoor environments cannot receive satellite signals, so latitude/longitude cann
 |---|---|---|
 | ![Circuit schematic](docs/images/Circuit%20schematic%20diagram.png) | ![GSM and GPS](docs/images/GSM%20and%20GPS%20Display%20Results.png) | ![SIM800 power](docs/images/SIM800%20external%20power%20supply%20diagram.jpg) |
 
+## 🧭 Original PCB Layout
+
+![Original PCB layout from the dissertation](docs/images/Original%20PCB%20layout%20from%20dissertation.png)
+
+This PCB layout is reproduced from Figure 13 of the original dissertation. Its component positions match the photographed physical prototype: the STM32 module is centered, SIM800C is at the upper right, GPS and OLED are on the left, MAX30102 and ADXL345 are along the lower edge, and the five-button group is at the lower right. It is the strongest surviving visual record of the final prototype PCB layout.
+
 ---
 
 ## 📂 Repository Structure
@@ -93,7 +99,7 @@ stm32-fall-detection-system/
 ├── hardware/            # Schematic / PCB design files (reference only, see notice below)
 ├── bom/                 # Bill of materials
 ├── docs/
-│   ├── images/          # Photos, OLED/UI, and SMS alert screenshots
+│   ├── images/          # Photos, PCB evidence, OLED/UI, and SMS alert screenshots
 │   ├── videos/          # Physical prototype + Proteus simulation videos
 │   ├── architecture.md
 │   ├── validation.md
@@ -104,7 +110,7 @@ stm32-fall-detection-system/
 
 ## ⚠️ Hardware Files Notice
 
-The `hardware/` folder contains schematic and PCB design files created during development. These represent design drafts and intermediate versions, and may not correspond exactly to the final hardware implementation used in the experiments. Provided for reference only.
+The `hardware/` folder contains schematic and PCB design files created during development. The dissertation PCB figure above provides direct visual evidence of the final board arrangement. The supplied engineering files should be checked against the dissertation figure and photographed prototype before fabrication.
 
 ## 📦 Bill of Materials
 
