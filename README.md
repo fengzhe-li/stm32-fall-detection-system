@@ -86,7 +86,7 @@ Indoor environments cannot receive satellite signals, so latitude/longitude cann
 
 ![Original PCB layout from the dissertation](docs/images/Original%20PCB%20layout%20from%20dissertation.png)
 
-This PCB layout is reproduced from Figure 13 of the original dissertation. Its component positions match the photographed physical prototype: the STM32 module is centered, SIM800C is at the upper right, GPS and OLED are on the left, MAX30102 and ADXL345 are along the lower edge, and the five-button group is at the lower right. It is the strongest surviving visual record of the final prototype PCB layout.
+This is a screenshot of the original PCB layout created in the design software for the final prototype and preserved in Figure 13 of the dissertation.
 
 ---
 
