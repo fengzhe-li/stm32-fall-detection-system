@@ -1,0 +1,21 @@
+{
+  "source_commit": "76011f1ac88e668715852a8a3ed88bef6de724a2",
+  "generated_at": "2026-11-11T12:26:22Z",
+  "workflow_run_id": "43020154291",
+  "reports": {
+    "erc": {
+      "date": "2026-11-11T12:25:41+0000",
+      "status": 5
+    },
+    "drc": {
+      "date": "2026-11-11T12:25:43+0000",
+      "status": 5
+    }
+  },
+  "zone_fill_status": 0,
+  "exports": {
+    "schematic": 0,
+    "render_front": 0,
+    "render_back": 0
+  }
+}
