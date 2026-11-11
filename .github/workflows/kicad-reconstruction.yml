@@ -45,7 +45,7 @@ jobs:
             -o "$DESIGN_DIR/native-kicad-output/erc.json" \
             "$DESIGN_DIR/$PROJECT.kicad_sch"
           erc_status=$?
-          kicad_cli pcb drc --format json --severity-all --exit-code-violations \
+          kicad_cli pcb drc --refill --format json --severity-all --exit-code-violations \
             -o "$DESIGN_DIR/native-kicad-output/drc.json" \
             "$DESIGN_DIR/$PROJECT.kicad_pcb"
           drc_status=$?

@@ -83,6 +83,9 @@ components = [
     comp("C4", "1000 uF low-ESR SIM800 bulk", 88, 39, "capacitor_large", ["+", "-"]),
     comp("C5", "100 nF SIM800 bypass", 80, 42, "capacitor", ["1", "2"]),
 ]
+# PC13 actively drives the buzzer transistor network in the released firmware.
+# Model it as an output so ERC can verify that Q1's base is driven through R2.
+components[0]["pin_types"][1] = "output"
 by_ref = {c["ref"]: c for c in components}
 
 nets = {
@@ -160,15 +163,21 @@ def autoroute():
     pad_cells = []
     for c in components:
         for pin in range(1, len(c["pin_names"])+1):
-            net = padnet.get(f'{c["ref"]}.{pin}')
-            if net:
-                x, y = abs_pad(c["ref"], pin); layers = {0} if c["kind"] == "resistor_smd" else {0,1}
-                # 0.30 mm trace + 0.25 mm clearance around 1.8 mm THT and
-                # 1.1/1.2 mm SMD pads, rounded up to the 0.5 mm route grid.
-                pad_cells.append((round(x/step), round(y/step), net, layers, 2 if c["kind"] == "resistor_smd" else 3))
+            token = f'{c["ref"]}.{pin}'
+            net = padnet.get(token)
+            x, y = abs_pad(c["ref"], pin); layers = {0} if c["kind"] == "resistor_smd" else {0,1}
+            # Unassigned pads are still copper obstacles.  Previously they
+            # were omitted here, allowing routed signals to cross Blue Pill
+            # and header pads that intentionally have no net.
+            obstacle_owner = net if net else f'__UNASSIGNED__{token}'
+            pad_cells.append((round(x/step), round(y/step), obstacle_owner, layers, 2 if c["kind"] == "resistor_smd" else 3))
     occupied = [defaultdict(set), defaultdict(set)]; tracks, vias, failures = [], [], []
     def blocked_by_pad(x, y, layer, net):
         return any(pnet != net and layer in layers and (px-x)**2+(py-y)**2 <= radius**2 for px,py,pnet,layers,radius in pad_cells)
+    def via_blocked_by_pad(x, y, net):
+        # A 1.0 mm via needs one additional 0.5 mm grid cell of separation
+        # beyond the signal-track envelope on both copper layers.
+        return any(pnet != net and (px-x)**2+(py-y)**2 <= (radius+1)**2 for px,py,pnet,layers,radius in pad_cells)
     def route_pair(net, start, goal, start_layers, goal_layers, width):
         sx,sy = round(start[0]/step),round(start[1]/step); gx,gy = round(goal[0]/step),round(goal[1]/step)
         q=[]; best={}; prev={}; starts=[]
@@ -192,7 +201,7 @@ def autoroute():
                 nc=cost+1+(0.35 if direction not in (4,nd) else 0); ns=(xx,yy,layer,nd)
                 if nc < best.get(ns,1e30): best[ns]=nc; prev[ns]=state; heapq.heappush(q,(nc+abs(xx-gx)+abs(yy-gy),nc,ns))
             other=1-layer
-            if not blocked_by_pad(x,y,other,net):
+            if not blocked_by_pad(x,y,other,net) and not via_blocked_by_pad(x,y,net):
                 o0=occupied[layer].get((x,y),set()); o1=occupied[other].get((x,y),set())
                 if (not o0 or o0=={net}) and (not o1 or o1=={net}):
                     ns=(x,y,other,4); nc=cost+9
@@ -293,7 +302,10 @@ def library_symbol(c):
 
 
 grid=[("J2",25,30),("SW7",55,30),("U1",85,30),("C1",115,30),("C2",145,30),("C3",175,30),("J3",215,30),("SW6",245,30),("C4",275,30),("C5",305,30),("J9",335,30),("J1",170,100),("J5",25,85),("J10",315,85),("R3",275,85),("R4",275,105),("J4",25,150),("R1",55,150),("J6",90,150),("R5",120,142),("R6",120,158),("J7",160,150),("R7",190,142),("R8",190,158),("J8",230,150),("R9",260,142),("R10",260,158),("SW1",25,205),("SW2",55,205),("SW3",85,205),("SW4",115,205),("SW5",145,205),("R2",220,205),("R11",250,205),("Q1",285,205),("BZ1",320,205)]
-schematic_positions={ref:(x,y) for ref,x,y in grid}; root_uuid=uid('schematic-root')
+# KiCad's default schematic connection grid is 50 mil (1.27 mm).  Symbols,
+# pin endpoints, wires, and labels must share that grid for native ERC to
+# recognize the generated connections.
+schematic_positions={ref:(round(x/1.27)*1.27, round(y/1.27)*1.27) for ref,x,y in grid}; root_uuid=uid('schematic-root')
 sch=['(kicad_sch','  (version 20250114)','  (generator "reconstruction_generator")','  (generator_version "2.0")',f'  (uuid "{root_uuid}")','  (paper "A3")','  (title_block (title "STM32 Fall Detection — Reconstructed Final Design") (rev "2.0") (company "Independent undergraduate project reconstruction") (comment 1 "Not Fabrication-Validated") (comment 2 "Final physical prototype governs placement; firmware governs confirmed GPIO"))','  (lib_symbols']
 for c in components: sch.append(library_symbol(c))
 sch.append('  )')
