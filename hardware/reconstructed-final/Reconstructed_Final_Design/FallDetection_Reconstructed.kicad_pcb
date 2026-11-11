@@ -883,7 +883,7 @@
   (via (at 51.500 66.000) (size 1.0) (drill 0.5) (layers "F.Cu" "B.Cu") (net 6) (uuid "28fa3e05-f852-55c0-a895-5cd4217c9c79"))
   (via (at 38.500 72.000) (size 1.0) (drill 0.5) (layers "F.Cu" "B.Cu") (net 6) (uuid "72d8242e-2da2-509c-93f1-26b1ac5274ee"))
   (via (at 22.000 72.000) (size 1.0) (drill 0.5) (layers "F.Cu" "B.Cu") (net 6) (uuid "3886c8af-c4ad-5866-beb9-d6b044f4893c"))
-  (zone (net 1) (net_name "GND") (layer "B.Cu") (uuid "834b091c-225b-5a5f-92c1-5f4b33512aa1") (hatch edge 0.5) (connect_pads (clearance 0.3)) (min_thickness 0.25) (fill yes (thermal_gap 0.3) (thermal_bridge_width 0.4)) (polygon (pts (xy 1 1) (xy 103.0 1) (xy 103.0 81.0) (xy 1 81.0))))
+  (zone (net 1) (net_name "GND") (layer "B.Cu") (uuid "834b091c-225b-5a5f-92c1-5f4b33512aa1") (hatch edge 0.5) (connect_pads (clearance 0.25)) (min_thickness 0.25) (fill yes (thermal_gap 0.3) (thermal_bridge_width 0.4)) (polygon (pts (xy 1 1) (xy 103.0 1) (xy 103.0 81.0) (xy 1 81.0))))
   (gr_rect (start 0 0) (end 104.0 82.0) (stroke (width 0.05) (type default)) (fill none) (layer "Edge.Cuts") (uuid "104a20e8-4dee-5929-9e5e-a7a4a6567740"))
   (gr_text "RECONSTRUCTED FINAL DESIGN / NOT FABRICATION-VALIDATED" (at 52 3) (layer "F.SilkS") (uuid "a5bd1cd6-806a-5a54-9ba6-c3a440a217b5") (effects (font (size 1.3 1.3) (thickness 0.2))))
   (gr_text "STM32 FALL DETECTION + HEALTH MONITOR" (at 52 79) (layer "F.SilkS") (uuid "0a056e93-ce6e-5aba-8ded-48cc9ae6229d") (effects (font (size 1.2 1.2) (thickness 0.2))))

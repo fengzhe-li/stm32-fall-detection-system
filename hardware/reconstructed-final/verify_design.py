@@ -86,6 +86,7 @@ for f in ['FallDetection_Reconstructed.kicad_pcb','FallDetection_Reconstructed.k
 pcb=(root/'FallDetection_Reconstructed.kicad_pcb').read_text()
 sch=(root/'FallDetection_Reconstructed.kicad_sch').read_text()
 if '(zone (net 1) (net_name "GND") (layer "B.Cu")' not in pcb: errors.append('missing B.Cu GND zone')
+if '(connect_pads (clearance 0.25))' not in pcb: errors.append('GND zone clearance must match the 0.25 mm copper rule')
 if pcb.count('(segment ') < 25: errors.append('insufficient routed copper segments')
 for token in ['(lib_symbols','  (symbol','  (wire','  (label','  (no_connect']:
     if token not in sch: errors.append('schematic lacks '+token.strip())
