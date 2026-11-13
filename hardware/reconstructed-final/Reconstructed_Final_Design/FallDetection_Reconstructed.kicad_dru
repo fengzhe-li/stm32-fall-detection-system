@@ -1,0 +1,5 @@
+(version 1)
+(rule "Copper clearance" (constraint clearance (min 0.25mm)))
+(rule "Signal track width" (constraint track_width (min 0.30mm)))
+(rule "Via size" (constraint via_diameter (min 1.0mm)) (constraint hole_size (min 0.5mm)))
+(rule "Board edge clearance" (constraint edge_clearance (min 0.25mm)))

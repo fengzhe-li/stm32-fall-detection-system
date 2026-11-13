@@ -1,0 +1,1387 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-11T12:50:38+0000",
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "9.0.9",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/980a5f00-ae27-5670-91ac-c432a4710722",
+            "violations": [
+                {
+                    "description": "Pins of type Power output and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol J2 Pin 2 [GND, Power output, Line]",
+                            "pos": {
+                                "x": 0.3556,
+                                "y": 0.3048
+                            },
+                            "uuid": "bbd3a6f3-5e2e-5d9a-af05-75227c706db2"
+                        },
+                        {
+                            "description": "Symbol U1 Pin 2 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 0.7493,
+                                "y": 0.2921
+                            },
+                            "uuid": "6c6f80f1-6b46-574a-820c-d25f54f450e1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 3 [IN, Power input, Line]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.3175
+                            },
+                            "uuid": "10ebd677-fe15-59c7-bcae-7b1c68dd655c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 3 [IN, Power input, Line]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.3175
+                            },
+                            "uuid": "10ebd677-fe15-59c7-bcae-7b1c68dd655c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J4 Pin 2 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 0.1524,
+                                "y": 1.4859
+                            },
+                            "uuid": "5a4b9304-b1ac-5ce1-9f9f-bbd0f0b27014"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol J4 Pin 3 [DQ, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.3556,
+                                "y": 1.5113
+                            },
+                            "uuid": "09054cef-0417-54c1-99fd-8febce2bca64"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 19 [GND_A, Power input, Line]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 0.7874
+                            },
+                            "uuid": "2e7d49a1-0337-52ac-876f-eec5c7f9fedf"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 40 [3V3_B, Power input, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.762
+                            },
+                            "uuid": "906c2f1b-5fc3-5013-9265-ad7d9102ea22"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 39 [GND_C, Power input, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.7874
+                            },
+                            "uuid": "7c4c0fa3-7205-5278-ac05-39517a8f540d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 38 [5V, Power input, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.8128
+                            },
+                            "uuid": "9b4bc6fd-c4dd-567a-b0b4-4706c1b55abb"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pins of type Output and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 2 [PC13, Output, Line]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.2192
+                            },
+                            "uuid": "62d59eb6-5bd4-53a4-a4a1-9fba488a9c3c"
+                        },
+                        {
+                            "description": "Symbol J3 Pin 2 [GND, Power output, Line]",
+                            "pos": {
+                                "x": 2.2479,
+                                "y": 0.3048
+                            },
+                            "uuid": "4665ed3d-14ae-56c6-913f-e82d2b3c11bb"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pins of type Power output and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol J3 Pin 2 [GND, Power output, Line]",
+                            "pos": {
+                                "x": 2.2479,
+                                "y": 0.3048
+                            },
+                            "uuid": "4665ed3d-14ae-56c6-913f-e82d2b3c11bb"
+                        },
+                        {
+                            "description": "Symbol U1 Pin 2 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 0.7493,
+                                "y": 0.2921
+                            },
+                            "uuid": "6c6f80f1-6b46-574a-820c-d25f54f450e1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 Pin 3 [B, Input, Line]",
+                            "pos": {
+                                "x": 2.9464,
+                                "y": 2.0574
+                            },
+                            "uuid": "a74925f8-e280-5cd7-b81f-94b3d2f77f5d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 Pin 3 [B, Input, Line]",
+                            "pos": {
+                                "x": 2.9464,
+                                "y": 2.0574
+                            },
+                            "uuid": "a74925f8-e280-5cd7-b81f-94b3d2f77f5d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J2 [J2]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 0.3048
+                            },
+                            "uuid": "82f73a55-fa4d-599f-893b-2b143f84a95a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J2 [J2]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 0.3048
+                            },
+                            "uuid": "82f73a55-fa4d-599f-893b-2b143f84a95a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW7 [SW7]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 0.3048
+                            },
+                            "uuid": "69441234-8e74-5a10-9fe7-dbb224870951"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW7 [SW7]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 0.3048
+                            },
+                            "uuid": "69441234-8e74-5a10-9fe7-dbb224870951"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J5 [J5]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 0.8509
+                            },
+                            "uuid": "fd2cc6f6-8ab6-500f-89e9-1a003ba549e0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J5 [J5]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 0.8509
+                            },
+                            "uuid": "fd2cc6f6-8ab6-500f-89e9-1a003ba549e0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [U1]",
+                            "pos": {
+                                "x": 0.8509,
+                                "y": 0.3048
+                            },
+                            "uuid": "b0b7394b-e293-5436-92bd-7119850a9f5f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [U1]",
+                            "pos": {
+                                "x": 0.8509,
+                                "y": 0.3048
+                            },
+                            "uuid": "b0b7394b-e293-5436-92bd-7119850a9f5f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.2921
+                            },
+                            "uuid": "c2613afd-0f88-5f57-86e6-211826e9dd69"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol C1 [C1]",
+                            "pos": {
+                                "x": 1.1557,
+                                "y": 0.3048
+                            },
+                            "uuid": "5fccbae1-31d1-5078-a169-86ec8287ceff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol C1 [C1]",
+                            "pos": {
+                                "x": 1.1557,
+                                "y": 0.3048
+                            },
+                            "uuid": "5fccbae1-31d1-5078-a169-86ec8287ceff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol C2 [C2]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 0.3048
+                            },
+                            "uuid": "0bdc11f2-b643-5cc7-b0d2-b2c3c83695d7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol C2 [C2]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 0.3048
+                            },
+                            "uuid": "0bdc11f2-b643-5cc7-b0d2-b2c3c83695d7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J4 [J4]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 1.4986
+                            },
+                            "uuid": "7c3fc127-31f4-58b7-a8ea-cc818a527070"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J4 [J4]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 1.4986
+                            },
+                            "uuid": "7c3fc127-31f4-58b7-a8ea-cc818a527070"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 0.3556,
+                                "y": 1.4859
+                            },
+                            "uuid": "0348479e-9553-575f-b34a-68ebc54f3bdf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R1]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 1.4986
+                            },
+                            "uuid": "23ed08d0-a30e-506a-a4ca-a5a7d802fb46"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R1]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 1.4986
+                            },
+                            "uuid": "23ed08d0-a30e-506a-a4ca-a5a7d802fb46"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J6 [J6]",
+                            "pos": {
+                                "x": 0.9017,
+                                "y": 1.4986
+                            },
+                            "uuid": "69fd85dd-2b4a-51f8-a2e0-2760f2c62406"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J6 [J6]",
+                            "pos": {
+                                "x": 0.9017,
+                                "y": 1.4986
+                            },
+                            "uuid": "69fd85dd-2b4a-51f8-a2e0-2760f2c62406"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol C3 [C3]",
+                            "pos": {
+                                "x": 1.7526,
+                                "y": 0.3048
+                            },
+                            "uuid": "8e05cc58-a913-57eb-b105-fb5aacba56cc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol C3 [C3]",
+                            "pos": {
+                                "x": 1.7526,
+                                "y": 0.3048
+                            },
+                            "uuid": "8e05cc58-a913-57eb-b105-fb5aacba56cc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R5 [R5]",
+                            "pos": {
+                                "x": 1.1938,
+                                "y": 1.4224
+                            },
+                            "uuid": "37646f6a-6eb5-5825-9f38-a7d56500545d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R5 [R5]",
+                            "pos": {
+                                "x": 1.1938,
+                                "y": 1.4224
+                            },
+                            "uuid": "37646f6a-6eb5-5825-9f38-a7d56500545d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [J1]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 1.0033
+                            },
+                            "uuid": "9f634b80-4216-5771-8481-75bee73f6981"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [J1]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 1.0033
+                            },
+                            "uuid": "9f634b80-4216-5771-8481-75bee73f6981"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R6 [R6]",
+                            "pos": {
+                                "x": 1.1938,
+                                "y": 1.5748
+                            },
+                            "uuid": "73551e9e-7ace-5523-bd23-be2432873f16"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R6 [R6]",
+                            "pos": {
+                                "x": 1.1938,
+                                "y": 1.5748
+                            },
+                            "uuid": "73551e9e-7ace-5523-bd23-be2432873f16"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW1 [SW1]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 2.0447
+                            },
+                            "uuid": "3191e0bd-5a2b-5260-9352-e3a2581a2a20"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW1 [SW1]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 2.0447
+                            },
+                            "uuid": "3191e0bd-5a2b-5260-9352-e3a2581a2a20"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW2 [SW2]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 2.0447
+                            },
+                            "uuid": "4eed654c-20ce-5635-88b3-ca5ae9da4299"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW2 [SW2]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 2.0447
+                            },
+                            "uuid": "4eed654c-20ce-5635-88b3-ca5ae9da4299"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J3 [J3]",
+                            "pos": {
+                                "x": 2.1463,
+                                "y": 0.3048
+                            },
+                            "uuid": "22abbef1-3460-5b3d-b1a5-6897e0081136"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J3 [J3]",
+                            "pos": {
+                                "x": 2.1463,
+                                "y": 0.3048
+                            },
+                            "uuid": "22abbef1-3460-5b3d-b1a5-6897e0081136"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 22 [PB13, Bidirectional, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 1.2192
+                            },
+                            "uuid": "bddff52e-d500-52cd-8c6c-6580fccddfe4"
+                        },
+                        {
+                            "description": "Symbol J3 Pin 2 [GND, Power output, Line]",
+                            "pos": {
+                                "x": 2.2479,
+                                "y": 0.3048
+                            },
+                            "uuid": "4665ed3d-14ae-56c6-913f-e82d2b3c11bb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J7 [J7]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.4986
+                            },
+                            "uuid": "0af91436-69b4-5eaa-93c8-a6ff9648c007"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J7 [J7]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.4986
+                            },
+                            "uuid": "0af91436-69b4-5eaa-93c8-a6ff9648c007"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW3 [SW3]",
+                            "pos": {
+                                "x": 0.8509,
+                                "y": 2.0447
+                            },
+                            "uuid": "2dd78560-efdd-5db6-89ac-7bd3d3e68927"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW3 [SW3]",
+                            "pos": {
+                                "x": 0.8509,
+                                "y": 2.0447
+                            },
+                            "uuid": "2dd78560-efdd-5db6-89ac-7bd3d3e68927"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW4 [SW4]",
+                            "pos": {
+                                "x": 1.1557,
+                                "y": 2.0447
+                            },
+                            "uuid": "cd4e3639-397b-5fc5-a88e-04b95eae8d24"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW4 [SW4]",
+                            "pos": {
+                                "x": 1.1557,
+                                "y": 2.0447
+                            },
+                            "uuid": "cd4e3639-397b-5fc5-a88e-04b95eae8d24"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R7 [R7]",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 1.4224
+                            },
+                            "uuid": "a378bdef-7628-58e9-b315-d7b842320a80"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R7 [R7]",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 1.4224
+                            },
+                            "uuid": "a378bdef-7628-58e9-b315-d7b842320a80"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW6 [SW6]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.3048
+                            },
+                            "uuid": "a9f2be1f-3505-5728-b010-fde816d4c4e3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW6 [SW6]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.3048
+                            },
+                            "uuid": "a9f2be1f-3505-5728-b010-fde816d4c4e3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R8]",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 1.5748
+                            },
+                            "uuid": "d2a56402-75dd-5b88-b376-571e61e8830f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R8]",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 1.5748
+                            },
+                            "uuid": "d2a56402-75dd-5b88-b376-571e61e8830f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol SW5 [SW5]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 2.0447
+                            },
+                            "uuid": "4fc9e445-3d95-51cc-93dd-1ff4b3d39db4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol SW5 [SW5]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 2.0447
+                            },
+                            "uuid": "4fc9e445-3d95-51cc-93dd-1ff4b3d39db4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J8 [J8]",
+                            "pos": {
+                                "x": 2.2987,
+                                "y": 1.4986
+                            },
+                            "uuid": "c6d8d4ed-d076-5e41-92c6-014d78844d43"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J8 [J8]",
+                            "pos": {
+                                "x": 2.2987,
+                                "y": 1.4986
+                            },
+                            "uuid": "c6d8d4ed-d076-5e41-92c6-014d78844d43"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol C4 [C4]",
+                            "pos": {
+                                "x": 2.7559,
+                                "y": 0.3048
+                            },
+                            "uuid": "cdf41425-1d32-5ac7-8e4a-4eaab02065c0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol C4 [C4]",
+                            "pos": {
+                                "x": 2.7559,
+                                "y": 0.3048
+                            },
+                            "uuid": "cdf41425-1d32-5ac7-8e4a-4eaab02065c0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R3]",
+                            "pos": {
+                                "x": 2.7559,
+                                "y": 0.8509
+                            },
+                            "uuid": "82083130-fe0c-5e14-862f-98e2e43c621a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R3]",
+                            "pos": {
+                                "x": 2.7559,
+                                "y": 0.8509
+                            },
+                            "uuid": "82083130-fe0c-5e14-862f-98e2e43c621a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R4]",
+                            "pos": {
+                                "x": 2.7559,
+                                "y": 1.0541
+                            },
+                            "uuid": "18296981-f71a-52f9-8489-b0c69e5ca1bd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R4]",
+                            "pos": {
+                                "x": 2.7559,
+                                "y": 1.0541
+                            },
+                            "uuid": "18296981-f71a-52f9-8489-b0c69e5ca1bd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R9 [R9]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.4224
+                            },
+                            "uuid": "f446532e-baa3-58ce-8c21-4334a8a0cbfb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R9 [R9]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.4224
+                            },
+                            "uuid": "f446532e-baa3-58ce-8c21-4334a8a0cbfb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R2]",
+                            "pos": {
+                                "x": 2.1971,
+                                "y": 2.0447
+                            },
+                            "uuid": "1da55347-69b5-5078-aa60-d7ee25535209"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R2]",
+                            "pos": {
+                                "x": 2.1971,
+                                "y": 2.0447
+                            },
+                            "uuid": "1da55347-69b5-5078-aa60-d7ee25535209"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R10 [R10]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.5748
+                            },
+                            "uuid": "c6a6b6b5-71ad-5835-8347-7e0acea68010"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R10 [R10]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.5748
+                            },
+                            "uuid": "c6a6b6b5-71ad-5835-8347-7e0acea68010"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol C5 [C5]",
+                            "pos": {
+                                "x": 3.048,
+                                "y": 0.3048
+                            },
+                            "uuid": "e16561f1-fc67-5e74-87e0-c731d776b1ef"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol C5 [C5]",
+                            "pos": {
+                                "x": 3.048,
+                                "y": 0.3048
+                            },
+                            "uuid": "e16561f1-fc67-5e74-87e0-c731d776b1ef"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol R11 [R11]",
+                            "pos": {
+                                "x": 2.5019,
+                                "y": 2.0447
+                            },
+                            "uuid": "30d6d4b2-917b-530d-a026-e4f8fe83469f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol R11 [R11]",
+                            "pos": {
+                                "x": 2.5019,
+                                "y": 2.0447
+                            },
+                            "uuid": "30d6d4b2-917b-530d-a026-e4f8fe83469f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J10 [J10]",
+                            "pos": {
+                                "x": 3.1496,
+                                "y": 0.8509
+                            },
+                            "uuid": "e664ce9f-4654-5720-a6f7-8e09b86ce3fd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J10 [J10]",
+                            "pos": {
+                                "x": 3.1496,
+                                "y": 0.8509
+                            },
+                            "uuid": "e664ce9f-4654-5720-a6f7-8e09b86ce3fd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol J9 [J9]",
+                            "pos": {
+                                "x": 3.3528,
+                                "y": 0.3048
+                            },
+                            "uuid": "38a5fc1a-e7e5-5eb4-93f2-9977b2e3828e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol J9 [J9]",
+                            "pos": {
+                                "x": 3.3528,
+                                "y": 0.3048
+                            },
+                            "uuid": "38a5fc1a-e7e5-5eb4-93f2-9977b2e3828e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [Q1]",
+                            "pos": {
+                                "x": 2.8448,
+                                "y": 2.0447
+                            },
+                            "uuid": "24970ed9-f32d-565f-9144-8b028e796999"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [Q1]",
+                            "pos": {
+                                "x": 2.8448,
+                                "y": 2.0447
+                            },
+                            "uuid": "24970ed9-f32d-565f-9144-8b028e796999"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 2.9464,
+                                "y": 2.032
+                            },
+                            "uuid": "aa0dd524-3692-55c6-a004-ab3cc1249541"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+                    "items": [
+                        {
+                            "description": "Symbol BZ1 [BZ1]",
+                            "pos": {
+                                "x": 3.2004,
+                                "y": 2.0447
+                            },
+                            "uuid": "b0023630-6ca8-526e-beed-30cee0622d62"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Reconstruction'",
+                    "items": [
+                        {
+                            "description": "Symbol BZ1 [BZ1]",
+                            "pos": {
+                                "x": 3.2004,
+                                "y": 2.0447
+                            },
+                            "uuid": "b0023630-6ca8-526e-beed-30cee0622d62"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "FallDetection_Reconstructed.kicad_sch"
+}

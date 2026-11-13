@@ -1,0 +1,1401 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-11T12:50:40+0000",
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "9.0.9",
+    "schematic_parity": [],
+    "source": "FallDetection_Reconstructed.validation.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint C5",
+                    "pos": {
+                        "x": 80.0,
+                        "y": 42.0
+                    },
+                    "uuid": "0b524230-802f-5d5e-926a-e0b8e21cdd5a"
+                },
+                {
+                    "description": "Footprint C4",
+                    "pos": {
+                        "x": 88.0,
+                        "y": 39.0
+                    },
+                    "uuid": "e28f922f-f3c8-54e8-a257-471abeeaee1d"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint J7",
+                    "pos": {
+                        "x": 49.0,
+                        "y": 72.0
+                    },
+                    "uuid": "23963344-05c3-56ff-a7c0-f35ba342c3d0"
+                },
+                {
+                    "description": "Footprint J1",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 38.0
+                    },
+                    "uuid": "9528b6c3-e35e-5db8-a518-811ef969f9b5"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint R3",
+                    "pos": {
+                        "x": 72.0,
+                        "y": 18.0
+                    },
+                    "uuid": "3d420e57-bc91-5da0-8e54-6819ce515af3"
+                },
+                {
+                    "description": "Footprint J1",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 38.0
+                    },
+                    "uuid": "9528b6c3-e35e-5db8-a518-811ef969f9b5"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint Q1",
+                    "pos": {
+                        "x": 87.0,
+                        "y": 51.0
+                    },
+                    "uuid": "56ee047b-40f9-520e-8b83-5d80ed0dc4e9"
+                },
+                {
+                    "description": "Footprint BZ1",
+                    "pos": {
+                        "x": 96.0,
+                        "y": 59.0
+                    },
+                    "uuid": "8b74a303-58f1-59bc-8ab2-98bd3c5b3589"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint J6",
+                    "pos": {
+                        "x": 26.0,
+                        "y": 72.0
+                    },
+                    "uuid": "5859b816-9905-5b59-b64c-63d218c826a9"
+                },
+                {
+                    "description": "Footprint R5",
+                    "pos": {
+                        "x": 15.5,
+                        "y": 67.0
+                    },
+                    "uuid": "7a7e8db1-1cd7-5d47-8e9e-dd17291b077b"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint J6",
+                    "pos": {
+                        "x": 26.0,
+                        "y": 72.0
+                    },
+                    "uuid": "5859b816-9905-5b59-b64c-63d218c826a9"
+                },
+                {
+                    "description": "Footprint R6",
+                    "pos": {
+                        "x": 15.5,
+                        "y": 72.0
+                    },
+                    "uuid": "c5deae0e-f6e4-5bba-83b8-2a456d948443"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint U1",
+                    "pos": {
+                        "x": 44.0,
+                        "y": 7.0
+                    },
+                    "uuid": "817138f3-6694-5894-ab70-1a797e2cc2d8"
+                },
+                {
+                    "description": "Footprint J1",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 38.0
+                    },
+                    "uuid": "9528b6c3-e35e-5db8-a518-811ef969f9b5"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "Footprint J1",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 38.0
+                    },
+                    "uuid": "9528b6c3-e35e-5db8-a518-811ef969f9b5"
+                },
+                {
+                    "description": "Footprint R4",
+                    "pos": {
+                        "x": 72.0,
+                        "y": 25.0
+                    },
+                    "uuid": "fb0c2b1c-3b34-51b1-926d-aff7f0e71311"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Rectangle on Edge.Cuts",
+                    "pos": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "uuid": "104a20e8-4dee-5929-9e5e-a7a4a6567740"
+                },
+                {
+                    "description": "Rectangle of J9 on f.silkscreen",
+                    "pos": {
+                        "x": 94.0,
+                        "y": 37.0
+                    },
+                    "uuid": "c4270c2b-cd94-5ec2-96b7-7345c5f7c025"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Drilled holes co-located",
+            "items": [
+                {
+                    "description": "Via [3V3] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 19.0,
+                        "y": 57.0
+                    },
+                    "uuid": "6bedd117-d5c7-5e99-ad9c-5bf250899c8b"
+                },
+                {
+                    "description": "Via [3V3] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 19.0,
+                        "y": 57.0
+                    },
+                    "uuid": "984119e7-de0a-5dc8-b93f-293ce8178921"
+                }
+            ],
+            "severity": "warning",
+            "type": "holes_co_located"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint C1",
+                    "pos": {
+                        "x": 34.0,
+                        "y": 7.0
+                    },
+                    "uuid": "031cca84-aa72-54e4-aa05-18fcb76f05da"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R1",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 31.0
+                    },
+                    "uuid": "0800d7bb-c8c3-5f47-af93-15bd69f05689"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R8",
+                    "pos": {
+                        "x": 37.5,
+                        "y": 72.0
+                    },
+                    "uuid": "08879486-5c7b-5367-b1da-0fd6f7ce2da7"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint C5",
+                    "pos": {
+                        "x": 80.0,
+                        "y": 42.0
+                    },
+                    "uuid": "0b524230-802f-5d5e-926a-e0b8e21cdd5a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R9",
+                    "pos": {
+                        "x": 29.5,
+                        "y": 43.0
+                    },
+                    "uuid": "1678fa08-1ed6-581a-8bca-a709b585d8dc"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J7",
+                    "pos": {
+                        "x": 49.0,
+                        "y": 72.0
+                    },
+                    "uuid": "23963344-05c3-56ff-a7c0-f35ba342c3d0"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R3",
+                    "pos": {
+                        "x": 72.0,
+                        "y": 18.0
+                    },
+                    "uuid": "3d420e57-bc91-5da0-8e54-6819ce515af3"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R2",
+                    "pos": {
+                        "x": 78.0,
+                        "y": 49.0
+                    },
+                    "uuid": "3dd277c1-2ae5-583f-b5b1-1815826d71a2"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R11",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 36.0
+                    },
+                    "uuid": "4b24977d-5c3f-561f-b812-bc8127e80b00"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW2",
+                    "pos": {
+                        "x": 81.0,
+                        "y": 59.0
+                    },
+                    "uuid": "5023bc2b-0996-53ef-8940-127ab92ddf17"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J9",
+                    "pos": {
+                        "x": 99.0,
+                        "y": 41.0
+                    },
+                    "uuid": "516f8818-44bc-592a-9664-27aef6c77f58"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J10",
+                    "pos": {
+                        "x": 88.0,
+                        "y": 21.0
+                    },
+                    "uuid": "550c1b39-ac3a-597c-b8ae-6e9a492703f9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint Q1",
+                    "pos": {
+                        "x": 87.0,
+                        "y": 51.0
+                    },
+                    "uuid": "56ee047b-40f9-520e-8b83-5d80ed0dc4e9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J6",
+                    "pos": {
+                        "x": 26.0,
+                        "y": 72.0
+                    },
+                    "uuid": "5859b816-9905-5b59-b64c-63d218c826a9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J8",
+                    "pos": {
+                        "x": 16.0,
+                        "y": 48.0
+                    },
+                    "uuid": "5bb6f2ad-6e6a-5ca2-a585-0f98d6067086"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R10",
+                    "pos": {
+                        "x": 29.5,
+                        "y": 54.0
+                    },
+                    "uuid": "6daa8c81-f948-589f-a13b-07f32cd628d1"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW1",
+                    "pos": {
+                        "x": 72.0,
+                        "y": 59.0
+                    },
+                    "uuid": "712bb87e-9e6c-55ae-bd82-bf99f44729ef"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW7",
+                    "pos": {
+                        "x": 8.0,
+                        "y": 17.0
+                    },
+                    "uuid": "74c55e88-4856-5375-b325-dcdba54db7ec"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R5",
+                    "pos": {
+                        "x": 15.5,
+                        "y": 67.0
+                    },
+                    "uuid": "7a7e8db1-1cd7-5d47-8e9e-dd17291b077b"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint U1",
+                    "pos": {
+                        "x": 44.0,
+                        "y": 7.0
+                    },
+                    "uuid": "817138f3-6694-5894-ab70-1a797e2cc2d8"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW5",
+                    "pos": {
+                        "x": 92.0,
+                        "y": 70.0
+                    },
+                    "uuid": "858e3a6d-3fc9-53ff-97bd-879616ff6222"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint BZ1",
+                    "pos": {
+                        "x": 96.0,
+                        "y": 59.0
+                    },
+                    "uuid": "8b74a303-58f1-59bc-8ab2-98bd3c5b3589"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW4",
+                    "pos": {
+                        "x": 81.0,
+                        "y": 70.0
+                    },
+                    "uuid": "8d0f2894-eabc-5468-af05-d17b2c8f062a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint C3",
+                    "pos": {
+                        "x": 61.0,
+                        "y": 7.0
+                    },
+                    "uuid": "93503902-1721-5874-afaf-90f5504fc8c9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint C2",
+                    "pos": {
+                        "x": 53.0,
+                        "y": 7.0
+                    },
+                    "uuid": "94a85dd0-b581-5899-a306-097c642f3a5d"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J1",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 38.0
+                    },
+                    "uuid": "9528b6c3-e35e-5db8-a518-811ef969f9b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R7",
+                    "pos": {
+                        "x": 37.5,
+                        "y": 67.0
+                    },
+                    "uuid": "9f6fe387-0c93-5eff-885b-77fae0901ddf"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW3",
+                    "pos": {
+                        "x": 71.0,
+                        "y": 70.0
+                    },
+                    "uuid": "ac30e3b3-f655-56ab-b4e8-9226297f14c9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J4",
+                    "pos": {
+                        "x": 15.0,
+                        "y": 31.0
+                    },
+                    "uuid": "ad283f87-1c0c-578b-9053-e35eaac89050"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J2",
+                    "pos": {
+                        "x": 7.0,
+                        "y": 7.0
+                    },
+                    "uuid": "aea7e358-cfd3-58f1-bf12-cb2a27a92c42"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J3",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 7.0
+                    },
+                    "uuid": "bfa5f3a6-f192-55ea-a1c0-b05a946d14f1"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R6",
+                    "pos": {
+                        "x": 15.5,
+                        "y": 72.0
+                    },
+                    "uuid": "c5deae0e-f6e4-5bba-83b8-2a456d948443"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint C4",
+                    "pos": {
+                        "x": 88.0,
+                        "y": 39.0
+                    },
+                    "uuid": "e28f922f-f3c8-54e8-a257-471abeeaee1d"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint J5",
+                    "pos": {
+                        "x": 24.0,
+                        "y": 18.0
+                    },
+                    "uuid": "eef00595-b765-51b4-9bc8-44cda293e528"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint SW6",
+                    "pos": {
+                        "x": 99.0,
+                        "y": 49.0
+                    },
+                    "uuid": "f1d32ff2-7406-56bf-8bac-872097143bdc"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Reconstruction'.",
+            "items": [
+                {
+                    "description": "Footprint R4",
+                    "pos": {
+                        "x": 72.0,
+                        "y": 25.0
+                    },
+                    "uuid": "fb0c2b1c-3b34-51b1-926d-aff7f0e71311"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R1 on f.silkscreen",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 29.0
+                    },
+                    "uuid": "a4e85ca1-1f8d-5fb2-8d98-4646e3672b56"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R8 on f.silkscreen",
+                    "pos": {
+                        "x": 36.3,
+                        "y": 71.3
+                    },
+                    "uuid": "896ab71b-a43f-5fc1-8436-9148da78ffa5"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R9 on f.silkscreen",
+                    "pos": {
+                        "x": 28.3,
+                        "y": 42.3
+                    },
+                    "uuid": "2ec4676a-5114-5e8e-ba3d-02af08e429d3"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R3 on f.silkscreen",
+                    "pos": {
+                        "x": 67.5,
+                        "y": 16.0
+                    },
+                    "uuid": "a3a5b86f-cf89-5a79-9714-437993831d61"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R2 on f.silkscreen",
+                    "pos": {
+                        "x": 73.5,
+                        "y": 47.0
+                    },
+                    "uuid": "f1a3e364-c6f0-52e6-bec2-83b621bcbce1"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R11 on f.silkscreen",
+                    "pos": {
+                        "x": 69.5,
+                        "y": 34.0
+                    },
+                    "uuid": "90384357-ccbc-5eb8-bda4-ee58c7967cef"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of SW2 on f.silkscreen",
+                    "pos": {
+                        "x": 77.5,
+                        "y": 55.5
+                    },
+                    "uuid": "9cc36b6f-c5ee-5a69-b69d-a5dcf09446a4"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of Q1 on f.silkscreen",
+                    "pos": {
+                        "x": 84.0,
+                        "y": 48.5
+                    },
+                    "uuid": "6768eac7-1bb1-5b12-a6ff-1bb11c34cf50"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R10 on f.silkscreen",
+                    "pos": {
+                        "x": 28.3,
+                        "y": 53.3
+                    },
+                    "uuid": "9c63f928-7fae-501a-912a-2a94b08e2557"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of SW1 on f.silkscreen",
+                    "pos": {
+                        "x": 68.5,
+                        "y": 55.5
+                    },
+                    "uuid": "294bf201-bf1c-53b9-a067-51eef7bb2e50"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R5 on f.silkscreen",
+                    "pos": {
+                        "x": 14.3,
+                        "y": 66.3
+                    },
+                    "uuid": "9af81706-ed58-597a-b536-c724f59cbbc7"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of SW5 on f.silkscreen",
+                    "pos": {
+                        "x": 88.5,
+                        "y": 66.5
+                    },
+                    "uuid": "183d67be-644c-57aa-8727-8df520c2cc3b"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of SW4 on f.silkscreen",
+                    "pos": {
+                        "x": 77.5,
+                        "y": 66.5
+                    },
+                    "uuid": "0d3aebd0-afa5-520f-8797-0bda5be138a2"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of J1 on f.silkscreen",
+                    "pos": {
+                        "x": 42.3,
+                        "y": 11.35
+                    },
+                    "uuid": "d905d033-5bcf-59e2-8c47-3977f6f383e0"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R7 on f.silkscreen",
+                    "pos": {
+                        "x": 36.3,
+                        "y": 66.3
+                    },
+                    "uuid": "8fa482bc-bac8-5d5f-95ca-1529260e2a9a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of SW3 on f.silkscreen",
+                    "pos": {
+                        "x": 67.5,
+                        "y": 66.5
+                    },
+                    "uuid": "936cb5fd-22d5-5132-b0ab-8d4326d26d4a"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R6 on f.silkscreen",
+                    "pos": {
+                        "x": 14.3,
+                        "y": 71.3
+                    },
+                    "uuid": "de05b537-ee68-5059-be45-3a599a9ba25f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Rectangle of R4 on f.silkscreen",
+                    "pos": {
+                        "x": 67.5,
+                        "y": 23.0
+                    },
+                    "uuid": "2180890c-5ac7-529f-832b-8e245e7c6462"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of U1 on f.silkscreen",
+                    "pos": {
+                        "x": 38.5,
+                        "y": 3.0
+                    },
+                    "uuid": "100846f0-c27a-5c7e-a1ae-d2ce60230f19"
+                },
+                {
+                    "description": "PCB text 'RECONSTRUCTED FINAL DESIGN / NOT FABRICATION-VALIDATED' on f.silkscreen",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 3.0
+                    },
+                    "uuid": "a5bd1cd6-806a-5a54-9ba6-c3a440a217b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of C2",
+                    "pos": {
+                        "x": 53.0,
+                        "y": 3.0
+                    },
+                    "uuid": "195ad242-7f52-5c1f-bc94-2b197485cbc1"
+                },
+                {
+                    "description": "PCB text 'RECONSTRUCTED FINAL DESIGN / NOT FABRICATION-VALIDATED' on f.silkscreen",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 3.0
+                    },
+                    "uuid": "a5bd1cd6-806a-5a54-9ba6-c3a440a217b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of C2 on f.silkscreen",
+                    "pos": {
+                        "x": 50.5,
+                        "y": 4.5
+                    },
+                    "uuid": "cc70bd3e-bb6b-5a61-8544-f93795c25aee"
+                },
+                {
+                    "description": "Reference field of J1",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 9.85
+                    },
+                    "uuid": "e73b4183-1de3-53d1-abeb-1f5619c101b8"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of C3",
+                    "pos": {
+                        "x": 61.0,
+                        "y": 3.0
+                    },
+                    "uuid": "7af1c7a0-8a67-57fc-96bb-081fc3a3798b"
+                },
+                {
+                    "description": "PCB text 'RECONSTRUCTED FINAL DESIGN / NOT FABRICATION-VALIDATED' on f.silkscreen",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 3.0
+                    },
+                    "uuid": "a5bd1cd6-806a-5a54-9ba6-c3a440a217b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of C5 on f.silkscreen",
+                    "pos": {
+                        "x": 77.5,
+                        "y": 39.5
+                    },
+                    "uuid": "5e87f025-a1f6-5448-94ce-da18489b1c3f"
+                },
+                {
+                    "description": "Rectangle of C4 on f.silkscreen",
+                    "pos": {
+                        "x": 82.5,
+                        "y": 33.5
+                    },
+                    "uuid": "b2155f41-6004-54fc-a7fb-0a7728208618"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of R3 on f.silkscreen",
+                    "pos": {
+                        "x": 67.5,
+                        "y": 16.0
+                    },
+                    "uuid": "a3a5b86f-cf89-5a79-9714-437993831d61"
+                },
+                {
+                    "description": "Rectangle of J1 on f.silkscreen",
+                    "pos": {
+                        "x": 42.3,
+                        "y": 11.35
+                    },
+                    "uuid": "d905d033-5bcf-59e2-8c47-3977f6f383e0"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of R4 on f.silkscreen",
+                    "pos": {
+                        "x": 67.5,
+                        "y": 23.0
+                    },
+                    "uuid": "2180890c-5ac7-529f-832b-8e245e7c6462"
+                },
+                {
+                    "description": "Rectangle of J1 on f.silkscreen",
+                    "pos": {
+                        "x": 42.3,
+                        "y": 11.35
+                    },
+                    "uuid": "d905d033-5bcf-59e2-8c47-3977f6f383e0"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of J9 on f.silkscreen",
+                    "pos": {
+                        "x": 94.0,
+                        "y": 37.0
+                    },
+                    "uuid": "c4270c2b-cd94-5ec2-96b7-7345c5f7c025"
+                },
+                {
+                    "description": "Reference field of SW6",
+                    "pos": {
+                        "x": 99.0,
+                        "y": 44.5
+                    },
+                    "uuid": "cc5e3b95-4b60-53e5-abcc-d464b17acfde"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of SW6 on f.silkscreen",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 46.0
+                    },
+                    "uuid": "805b715a-5f56-5aa6-8aa3-46bdf5cfc643"
+                },
+                {
+                    "description": "Reference field of BZ1",
+                    "pos": {
+                        "x": 96.0,
+                        "y": 51.5
+                    },
+                    "uuid": "db000e29-37af-50e8-8d5e-1c814bd94aff"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Rectangle of Q1 on f.silkscreen",
+                    "pos": {
+                        "x": 84.0,
+                        "y": 48.5
+                    },
+                    "uuid": "6768eac7-1bb1-5b12-a6ff-1bb11c34cf50"
+                },
+                {
+                    "description": "Rectangle of BZ1 on f.silkscreen",
+                    "pos": {
+                        "x": 90.0,
+                        "y": 53.0
+                    },
+                    "uuid": "be6fdc5e-6d15-5235-887b-15a1f502b77d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of SW5",
+                    "pos": {
+                        "x": 92.0,
+                        "y": 65.0
+                    },
+                    "uuid": "a76e377a-86ce-5bb7-9341-ccaa0720194b"
+                },
+                {
+                    "description": "Rectangle of BZ1 on f.silkscreen",
+                    "pos": {
+                        "x": 90.0,
+                        "y": 53.0
+                    },
+                    "uuid": "be6fdc5e-6d15-5235-887b-15a1f502b77d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "PCB text 'STM32 FALL DETECTION + HEALTH MONITOR' on f.silkscreen",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 79.0
+                    },
+                    "uuid": "0a056e93-ce6e-5aba-8ded-48cc9ae6229d"
+                },
+                {
+                    "description": "Rectangle of J7 on f.silkscreen",
+                    "pos": {
+                        "x": 40.0,
+                        "y": 65.0
+                    },
+                    "uuid": "17b2ff63-8fa0-536c-8d30-6d3bb2134fb6"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "PCB text 'STM32 FALL DETECTION + HEALTH MONITOR' on f.silkscreen",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 79.0
+                    },
+                    "uuid": "0a056e93-ce6e-5aba-8ded-48cc9ae6229d"
+                },
+                {
+                    "description": "Rectangle of J6 on f.silkscreen",
+                    "pos": {
+                        "x": 17.0,
+                        "y": 65.0
+                    },
+                    "uuid": "906693a1-f0b3-5aaf-aa9b-facc35205135"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of C1",
+                    "pos": {
+                        "x": 34.0,
+                        "y": 3.0
+                    },
+                    "uuid": "2422cc86-e9cb-5f12-a128-3ab9db596695"
+                },
+                {
+                    "description": "PCB text 'RECONSTRUCTED FINAL DESIGN / NOT FABRICATION-VALIDATED' on f.silkscreen",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 3.0
+                    },
+                    "uuid": "a5bd1cd6-806a-5a54-9ba6-c3a440a217b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of J4",
+                    "pos": {
+                        "x": 15.0,
+                        "y": 25.5
+                    },
+                    "uuid": "5a254516-f7fb-55d4-9880-8a9ffc0ee470"
+                },
+                {
+                    "description": "Rectangle of J5 on f.silkscreen",
+                    "pos": {
+                        "x": 13.0,
+                        "y": 10.0
+                    },
+                    "uuid": "f0806c23-fb72-562c-8b76-186e5c65656f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        }
+    ]
+}

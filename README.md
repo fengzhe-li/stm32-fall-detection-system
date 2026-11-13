@@ -123,3 +123,9 @@ Full project dissertation: [`docs/U2180177 Li Fengzhe Final report.pdf`](docs/U2
 ## 👨‍💻 Author
 
 **Fengzhe Li** — Embedded Systems | STM32 | IoT
+
+## Reconstructed final-style PCB
+
+**Reconstructed Design Based on the Final Physical Prototype — Not Fabrication-Validated.** The editable KiCad project is in [`hardware/reconstructed-final/Reconstructed_Final_Design/`](hardware/reconstructed-final/Reconstructed_Final_Design/). It contains a symbol-and-wire schematic, routed two-layer PCB, explicit connectivity/BOM evidence and engineering front/back previews. Native KiCad ERC/DRC and 3D outputs are produced by the reconstruction validation workflow and remain subject to review.
+
+The layout follows the genuine [prototype photograph](docs/images/Photograph%20of%20the%20device.jpg): central Blue Pill, GPS/OLED at left, SIM800 at upper-right, sensors below and five buttons at lower-right. Recovered CAD files are supporting historical evidence and remain unchanged. See the [reconstruction report](hardware/reconstructed-final/Reconstructed_Final_Design/RECONSTRUCTION_REPORT.md), [firmware-to-net mapping](hardware/reconstructed-final/Reconstructed_Final_Design/firmware_to_net_mapping.csv) and [verification results](hardware/reconstructed-final/Reconstructed_Final_Design/verification_results.md).

@@ -1,0 +1,13 @@
+Function,MCU pin,Reconstructed net,Evidence,Classification,Notes
+GPS TX → MCU RX,PB11 / USART3_RX,GPS_TX_TO_MCU_RX_PB11,usart3.c configures PB11 as RX,Confirmed from active firmware,PB11 is not used for the active buzzer path.
+GPS RX ← MCU TX,PB10 / USART3_TX,GPS_RX_FROM_MCU_TX_PB10,usart3.c configures PB10 as TX,Confirmed from active firmware,Blue Pill header pin 15 only; erroneous baseline tie to header pin 38 removed.
+GSM TX → MCU RX,PA10 / USART1_RX,GSM_TX_TO_MCU_RX_PA10,usart1.c GPIO and USART setup,Confirmed from active firmware,SIM800 TX logic level is normally accepted by STM32 3.3 V input.
+GSM RX ← MCU TX,PA9 / USART1_TX,GSM_TX_FROM_MCU_PA9 → 10k/47k divider → GSM_RX_DIVIDED,usart1.c GPIO and USART setup,Firmware pin confirmed; divider is a new design decision,Divider targets about 2.72 V from 3.3 V for a bare 2.8 V SIM800 UART input.
+Buzzer driver,PC13,BUZZER_PC13,main.c uses BEEP from key.h; KEY_Init configures PC13,Confirmed from active startup path,PB11 BEEP_GPIO_Config in led.c is not called. S8050 lead order remains footprint-dependent.
+ADXL345 SCL / SDA,PA6 / PA7,ACCEL_SCL_PA6 / ACCEL_SDA_PA7,iic.c and iic.h; main calls IIC_init,Confirmed from active firmware,PD5/PD6 appears only in a stale comment. Optional pull-ups are DNP by default.
+MAX30102 SCL / SDA,PB1 / PB0,MAX_SCL_PB1 / MAX_SDA_PB0,myiic.c; main calls bsp_InitI2C,Confirmed from active firmware,Optional pull-ups are DNP by default because breakout pull-ups are unresolved.
+OLED SCL / SDA,PB6 / PB7,OLED_SCL_PB6 / OLED_SDA_PB7,OLED_I2C.c; main calls OLED_Init,Confirmed from active firmware,Optional pull-ups are DNP by default.
+DS18B20 DQ,PA11,TEMP_DQ_PA11,ds18b20.c; dissertation,Confirmed from active firmware,4.7k carrier pull-up is DNP if the fitted module already has one.
+Buttons,"PB12, PB13, PB14, PB15, PA8",BTN_MODE / BTN_UP / BTN_DOWN / BTN_NEXT / BTN_HELP,key.c and key.h,Confirmed from active firmware,Active-low switches to ground; MCU internal pull-ups are enabled.
+Blue Pill power,3V3 header pins 18 and 40,3V3,Carrier power architecture,New design decision,The 5 V header pin 38 is intentionally unconnected. Do not connect USB while the carrier drives 3.3 V.
+SIM800 power,Separate 4.0 V input,SIM_VBAT_INPUT / SIM_VBAT,Prototype photo and dissertation show separate modem supply,Visual evidence plus new power-integrity design,0.8 mm routing and 1000 uF low-ESR plus 100 nF local bypass; source must tolerate current bursts.
